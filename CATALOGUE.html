@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue - Shyam Senitaries</title>
+    <link rel="website icon" type="png" href="ss.png">
+    <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%);
+            flex-direction: column;
+            background-image: url(bg5.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .main {
+            width: 100%;
+            
+            background-position: center;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 1cm;
+        }
+
+        .navbar {
+            backdrop-filter: blur(30px);
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
+            position: fixed;
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            width: 96%;
+            top: 10px;
+            left: 2%;
+            z-index: 100;
+            border-radius: 15px;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin-right: 4cm;
+        }
+
+        .brand .logo {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .brand .brand-name {
+            font-family: "Brush Script", monospace;
+            font-size: 24px; 
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            color: #17b8e9; 
+            font-weight: bold;
+            margin-left: 10px; 
+            transition: color 0.3s ease;
+        }
+
+        .brand:hover .logo {
+            transform: scale(1.2);
+        }
+
+        .brand:hover .brand-name {
+            color: #ffffff; 
+        }
+
+        .menu {
+            flex-grow: 1;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            justify-content: flex-start;
+        }
+
+        .menu ul li {
+            margin: 0 15px;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 16px;
+            padding: 10px 20px;
+            transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            background-color: transparent;
+            border: 2px solid transparent;
+            border-radius: 8px;
+        }
+
+        .menu ul li a:hover {
+            color: #f8f8f8;
+            font-weight: bold;
+            transform: scale(1.2);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+            border-color: #007BFF;
+        }
+
+        .menu ul li a.active {
+            border: 2px solid #007BFF;
+            color: white;
+            font-weight: bold;
+        }
+
+        .menu ul li .next-btn {
+            background-color: #2F9CF4;
+            color: rgb(9, 8, 8);
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            margin-left: 3cm; 
+        }
+
+        .menu ul li .next-btn:hover {
+            background-color: #0B87EC;
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .catalogue-s {
+            text-align: center;
+            width: 60%;
+            margin: 4cm auto 0 auto; 
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .category {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .category h2 {
+            font-size: 22px;
+            color: #11a9d8;
+            margin-bottom: 10px;
+        }
+
+        .category a {
+            text-decoration: none;
+            color: #fdffff;
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .category a:hover {
+            color: rgb(9, 9, 9);
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="main">
+        
+        <div class="navbar">
+            <div class="icon">
+                <a href="index.html" class="brand">
+                    <img src="ss.png" alt="Business Logo" class="logo">
+                    <span class="brand-name">SHYAM SENITARIES</span>
+                </a>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="CATALOGUE.html"class="active">CATALOGUE</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    <div class="catalogue-s">
+        <h1>Product Catalogue</h1>
+        <div class="product-grid">
+            <div class="category"><h2>1: Bathsense Collection</h2><a href="pdfs/Product Price.pdf" target="_blank">View More</a></div>
+            <div class="category"><h2>2: Maxbi Collection</h2><a href="pdfs/Maxbi.pdf" target="_blank">View More</a></div>
+            <div class="category"><h2>3: Sparsh Collection</h2><a href="pdfs/Sparsh.pdf" target="_blank">View More</a></div>
+            <div class="category"><h2>4: Astral Collection</h2><a href="pdfs/Astral.pdf" target="_blank">View More</a></div>
+            <div class="category"><h2>5: Shidhi solar Collection</h2><a href="pdfs/Shidhi solar.pdf" target="_blank">View More</a></div>
+            <div class="category"><h2>6: Wavin Collection</h2><a href="pdfs/Wavin.pdf" target="_blank">View More</a></div>
+        </div>
+    </div>
+</body>
+</html>

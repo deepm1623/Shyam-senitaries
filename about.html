@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Shyam Sanitaries</title>
+    <link rel="website icon" type="png" href="ss.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%);
+            flex-direction: column;
+            background-image: url(bg5.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .main {
+    width: 100%;
+    
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    padding: 1cm;
+}
+
+        .navbar {
+            backdrop-filter: blur(30px);
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
+            position: fixed;
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            width: 96%;
+            top: 10px;
+            left: 2%;
+            z-index: 100;
+            border-radius: 15px;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin-right: 4cm;
+        }
+
+        .brand .logo {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .brand .brand-name {
+            font-family: "Brush Script", monospace;
+            font-size: 24px; 
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            color: #17b8e9; 
+            font-weight: bold;
+            margin-left: 10px; 
+            transition: color 0.3s ease;
+        }
+
+        .brand:hover .logo {
+            transform: scale(1.2);
+        }
+
+        .brand:hover .brand-name {
+            color: #ffffff; 
+        }
+
+        .menu {
+            flex-grow: 1;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            justify-content: flex-start;
+        }
+
+        .menu ul li {
+            margin: 0 15px;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 16px;
+            padding: 10px 20px;
+            transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            background-color: transparent;
+            border: 2px solid transparent;
+            border-radius: 8px;
+        }
+
+        .menu ul li a:hover {
+            color: #f8f8f8;
+            font-weight: bold;
+            transform: scale(1.2);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+            border-color: #007BFF;
+        }
+
+        .menu ul li a.active {
+            border: 2px solid #007BFF;
+            color: white;
+            font-weight: bold;
+        }
+
+        .menu ul li .next-btn {
+            background-color: #2F9CF4;
+            color: rgb(9, 8, 8);
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            margin-left: 3cm; 
+        }
+
+        .menu ul li .next-btn:hover {
+            background-color: #0B87EC;
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        
+
+.about-box {
+    display: flex;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    justify-content: flex-start;
+}
+
+
+        .about-box .logo-box {
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .about-box .logo-box img {
+            height: 50px;
+        }
+
+        .about-box .content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #0b0b0b;
+        }
+
+        .about-box .content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #17b8e9;
+            margin-bottom: 15px;
+        }
+        @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.content, .grid-container {
+    animation: fadeIn 1s ease-in-out;
+}
+
+    </style>
+</head>
+<body>
+    <div class="main">
+       
+        <div class="navbar">
+            <div class="icon">
+                <a href="index.html" class="brand">
+                    <img src="ss.png" alt="Business Logo" class="logo">
+                    <span class="brand-name">SHYAM SENITARIES</span>
+                </a>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="CATALOGUE.html">CATALOGUE</a></li>
+                    <li><a href="about.html" class="active">ABOUT</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+
+       
+        <div class="about-box">
+            <div class="logo-box">
+                <img src="ss.png" alt="Small Logo">
+            </div>
+            <div class="content">
+                <h1><b>Welcome to Shyam Senitaries</b></h1>
+                <p>Established by Popat Bhai in 1994, today Mahendra Makwana proudly carries on his legacy, driven by a passion for delivering exceptional quality and unparalleled customer service. Over the years, we've had the privilege of serving numerous satisfied customers, who have consistently appreciated our commitment to excellence.</p>
+                <p>Our core values remain unchanged: prioritizing customer satisfaction, delivering top-notch products at competitive prices, and providing exceptional service. We take pride in fostering long-term relationships with our valued customers, understanding their unique needs, and tailoring our solutions to exceed their expectations.</p>
+                <p>As we move forward, we're dedicated to upholding this tradition of excellence, investing in the latest technologies, and expanding our product offerings to cater to the evolving needs of our customers. Our goal is to remain the trusted partner of choice for our customers, providing them with peace of mind, and helping them achieve their goals.</p>
+                <p>Thank you for choosing us. We look forward to serving you!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
