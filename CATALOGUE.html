@@ -6,141 +6,175 @@
     <title>Catalogue - Shyam Senitaries</title>
     <link rel="website icon" type="png" href="ss.png">
     <style>
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%);
-            flex-direction: column;
-            background-image: url(bg5.jpg);
-            background-size: cover;
-            background-position: center;
-        }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%);
+      background-image: url(background.jpg);
+      background-size: cover;
+      background-position: center;
+    }
+    .navbar {
+      backdrop-filter: blur(30px);
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
+      position: fixed;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      width: 96%;
+      top: 10px;
+      left: 2%;
+      z-index: 100;
+      border-radius: 15px;
+      flex-wrap: wrap;
+    }
 
-        .main {
-            width: 100%;
-            
-            background-position: center;
-            background-size: cover;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 1cm;
-        }
+    .icon {
+      display: flex;
+      align-items: center;
+    }
 
-        .navbar {
-            backdrop-filter: blur(30px);
-            display: flex;
-            align-items: center;
-            padding: 10px 20px;
-            box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
-            position: fixed;
-            border: 2px solid rgba(255, 255, 255, 0.18);
-            width: 96%;
-            top: 10px;
-            left: 2%;
-            z-index: 100;
-            border-radius: 15px;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      margin-right: 4cm;
+    }
 
-        .icon {
-            display: flex;
-            align-items: center;
-        }
+    .brand .logo {
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            margin-right: 4cm;
-        }
+    .brand .brand-name {
+      font-family: "Brush Script", monospace;
+      font-size: 24px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      color: #17b8e9;
+      font-weight: bold;
+      margin-left: 10px;
+      transition: color 0.3s ease;
+    }
 
-        .brand .logo {
-            height: 50px;
-            transition: transform 0.3s ease;
-        }
+    .brand:hover .logo {
+      transform: scale(1.2);
+    }
 
-        .brand .brand-name {
-            font-family: "Brush Script", monospace;
-            font-size: 24px; 
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-            color: #17b8e9; 
-            font-weight: bold;
-            margin-left: 10px; 
-            transition: color 0.3s ease;
-        }
+    .brand:hover .brand-name {
+      color: #ffffff;
+    }
+    .nav-toggle {
+      display: none;
+    }
+    
+    .nav-toggle-label {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      margin-left: auto;
+      z-index: 101;
+    }
 
-        .brand:hover .logo {
-            transform: scale(1.2);
-        }
+    .nav-toggle-label span {
+      display: block;
+      width: 30px;
+      height: 4px;
+      background: #17b8e9; 
+      margin: 5px;
+      transition: all 0.3s;
+      border-radius: 3px;
+    }
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+      transform: rotate(55deg) translate(10px, 10px);
+    }
 
-        .brand:hover .brand-name {
-            color: #ffffff; 
-        }
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+      opacity: 0;
+    }
 
-        .menu {
-            flex-grow: 1;
-        }
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+      transform: rotate(-55deg) translate(10px, -10px);
+    }
+.nav-toggle,
+.nav-toggle-label {
+  display: none;
+}
 
-        .menu ul {
-            list-style-type: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-            justify-content: flex-start;
-        }
+@media only screen and (max-width: 767.98px) {
+  .nav-toggle-label {
+    display: flex;
+  }
+  .menu {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px 0;
+  }
+  .nav-toggle:checked ~ .menu {
+    display: block;
+  }
+  .menu ul {
+    flex-direction: column;
+    width: 100%;
+  }
 
-        .menu ul li {
-            margin: 0 15px;
-        }
-
-        .menu ul li a {
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 16px;
-            padding: 10px 20px;
-            transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
-            background-color: transparent;
-            border: 2px solid transparent;
-            border-radius: 8px;
-        }
-
-        .menu ul li a:hover {
-            color: #f8f8f8;
-            font-weight: bold;
-            transform: scale(1.2);
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-            border-color: #007BFF;
-        }
-
-        .menu ul li a.active {
-            border: 2px solid #007BFF;
-            color: white;
-            font-weight: bold;
-        }
-
-        .menu ul li .next-btn {
-            background-color: #2F9CF4;
-            color: rgb(9, 8, 8);
-            font-size: 16px;
-            padding: 10px 20px;
-            border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            margin-left: 3cm; 
-        }
-
-        .menu ul li .next-btn:hover {
-            background-color: #0B87EC;
-            transform: translateY(-5px);
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-        }
+  .menu ul li {
+    margin: 10px 0;
+  }
+  .brand {
+    margin-right: 0;
+  }
+}
+    .menu {
+      flex-grow: 1;
+    }
+    .menu ul {
+      list-style-type: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      justify-content: flex-start;
+    }
+    .menu ul li {
+      margin: 0 15px;
+    }
+    .menu ul li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 16px;
+      padding: 10px 20px;
+      transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: transparent;
+      border: 2px solid transparent;
+      border-radius: 8px;
+    }
+    .menu ul li a:hover {
+      color: #f8f8f8;
+      font-weight: bold;
+      transform: scale(1.2);
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+      border-color: #007BFF;
+    }
+    .menu ul li a.active {
+      border: 2px solid #007BFF;
+      color: white;
+      font-weight: bold;
+    }
 
         .catalogue-s {
             text-align: center;
@@ -189,7 +223,72 @@
         .category a:hover {
             color: rgb(9, 9, 9);
         }
-       
+@media only screen and (max-width: 767px) {
+    .catalogue-s {
+        width: 90%; 
+        margin: 2cm auto; 
+        padding: 15px;
+
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; 
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .category {
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 8px;
+    }
+
+    .category h2 {
+        font-size: 18px;
+    }
+
+    .category a {
+        font-size: 16px;
+        padding: 8px;
+    }
+}
+    @media only screen and (max-width: 767.98px) {
+      .navbar {
+        justify-content: space-between;
+      }
+      .menu {
+        width: 100%;
+        display: none;
+      }
+      .nav-toggle-label {
+        display: flex;
+      }
+      .nav-toggle:checked ~ .menu {
+        display: block;
+      }
+      .menu ul {
+        flex-direction: column;
+        width: 100%;
+      }
+      .menu ul li {
+        margin: 10px 0;
+        text-align: center;
+      }
+      
+      .brand {
+        margin-right: 0;
+      }
+      
+      .content {
+        margin: 2cm 1cm;
+        text-align: center;
+      }
+      
+      .grid-container {
+        margin: 2cm 1cm 0 1cm;
+      }
+    }
+
     </style>
 </head>
 <body>
@@ -202,26 +301,30 @@
                     <span class="brand-name">SHYAM SENITARIES</span>
                 </a>
             </div>
-
+<input type="checkbox" id="nav-toggle" class="nav-toggle" />
+<label for="nav-toggle" class="nav-toggle-label">
+  <span></span>
+  <span></span>
+  <span></span>
+</label>
             <div class="menu">
                 <ul>
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="CATALOGUE.html"class="active">CATALOGUE</a></li>
                     <li><a href="about.html">ABOUT</a></li>
                     <li><a href="contact.html">CONTACT</a></li>
-                    
                 </ul>
             </div>
         </div>
     <div class="catalogue-s">
         <h1>Product Catalogue</h1>
         <div class="product-grid">
-            <div class="category"><h2>1: Bathsense Collection</h2><a href="pdfs/Product Price.pdf" target="_blank">View More</a></div>
-            <div class="category"><h2>2: Maxbi Collection</h2><a href="pdfs/Maxbi.pdf" target="_blank">View More</a></div>
-            <div class="category"><h2>3: Sparsh Collection</h2><a href="pdfs/Sparsh.pdf" target="_blank">View More</a></div>
-            <div class="category"><h2>4: Astral Collection</h2><a href="pdfs/Astral.pdf" target="_blank">View More</a></div>
-            <div class="category"><h2>5: Shidhi solar Collection</h2><a href="pdfs/Shidhi solar.pdf" target="_blank">View More</a></div>
-            <div class="category"><h2>6: Wavin Collection</h2><a href="pdfs/Wavin.pdf" target="_blank">View More</a></div>
+            <div class="category"><h2>1: Bathsense Collection</h2><a href="pdfs/Product Price.pdf" target="_blank">Download</a></div>
+            <div class="category"><h2>2: Maxbi Collection</h2><a href="pdfs/Maxbi.pdf" target="_blank">Download</a></div>
+            <div class="category"><h2>3: Sparsh Collection</h2><a href="pdfs/Sparsh.pdf" target="_blank">Download</a></div>
+            <div class="category"><h2>4: Astral Collection</h2><a href="pdfs/Astral.pdf" target="_blank">Download</a></div>
+            <div class="category"><h2>5: Shidhi solar Collection</h2><a href="pdfs/Shidhi solar.pdf" target="_blank">Download</a></div>
+            <div class="category"><h2>6: Wavin Collection</h2><a href="pdfs/Wavin.pdf" target="_blank">Download</a></div>
         </div>
     </div>
 </body>
