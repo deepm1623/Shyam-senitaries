@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Showcase - Shyam Senitaries</title>
+  <link rel="website icon" type="png" href="ss.png">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%);
+      background-image: url(background.jpg);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .navbar {
+      backdrop-filter: blur(30px);
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
+      position: fixed;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      width: 96%;
+      top: 10px;
+      left: 2%;
+      z-index: 100;
+      border-radius: 15px;
+      flex-wrap: wrap;
+    }
+    .grid-container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      margin: 3cm 3cm 0 3cm;
+    }
+    .icon {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      margin-right: 4cm;
+    }
+
+    .brand .logo {
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .brand .brand-name {
+      font-family: "Brush Script", monospace;
+      font-size: 24px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      color: #17b8e9;
+      font-weight: bold;
+      margin-left: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .brand:hover .logo {
+      transform: scale(1.2);
+    }
+
+    .brand:hover .brand-name {
+      color: #ffffff;
+    }
+
+    .nav-toggle {
+      display: none;
+    }
+    
+    .nav-toggle-label {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      margin-left: auto;
+      z-index: 101;
+    }
+
+    .nav-toggle-label span {
+      display: block;
+      width: 30px;
+      height: 4px;
+      background: #ffffff; 
+      margin: 5px;
+      transition: all 0.3s;
+      border-radius: 3px;
+    }
+
+    
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+      transform: rotate(55deg) translate(10px, 10px);
+    }
+
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+      transform: rotate(-55deg) translate(10px, -10px);
+    }
+
+.nav-toggle,
+.nav-toggle-label {
+  display: none;
+}
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 5rem 2rem;
+  margin-top: 1cm; 
+}
+
+    .product-card {
+      width: 250px;
+      text-align: center;
+      border-radius: 15px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: 0.3s;
+    }
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .footer {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      font-size: 14px;
+      color: white;
+      border: 2px solid rgba(5, 5, 5, 0.18);
+      padding: 8px 15px;
+      border-radius: 8px;
+      backdrop-filter: blur(8px);
+    }
+    
+@media only screen and (max-width: 767.98px) {
+ 
+ .nav-toggle-label {
+   display: flex;
+ }
+
+
+ .menu {
+   display: none;
+   width: 100%;
+   position: absolute;
+   top: 60px;
+   left: 0;
+   background: rgba(11, 11, 11, 0.9);
+   backdrop-filter: blur(10px);
+   text-align: center;
+   border-radius: 10px;
+   padding: 10px 0;
+ }
+
+ 
+ .nav-toggle:checked ~ .menu {
+   display: block;
+ }
+
+
+ .menu ul {
+   flex-direction: column;
+   width: 100%;
+ }
+
+ .menu ul li {
+   margin: 10px 0;
+ }
+
+
+ .brand {
+   margin-right: 0;
+ }
+}
+  .menu {
+     flex-grow: 1;
+     display: flex;
+     justify-content: flex-start;
+   }
+
+   .menu ul {
+     list-style-type: none;
+     display: flex;
+     margin: 0;
+     padding: 0;
+   }
+
+   .menu ul li {
+     margin: 0 15px;
+   }
+
+   .menu ul li a {
+     text-decoration: none;
+     color: #ffffff;
+     font-size: 16px;
+     padding: 10px 20px;
+     transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+     background-color: transparent;
+     border: 2px solid transparent;
+     border-radius: 8px;
+   }
+
+   .menu ul li a:hover {
+     color: #f8f8f8;
+     font-weight: bold;
+     transform: scale(1.2);
+     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+     border-color: #007BFF;
+   }
+
+   .menu ul li a.active {
+     border: 2px solid #007BFF;
+     color: white;
+     font-weight: bold;
+   }
+
+   .menu {
+     flex-grow: 1;
+   }
+   .menu ul {
+     list-style-type: none;
+     display: flex;
+     margin: 0;
+     padding: 0;
+     justify-content: flex-start;
+   }
+   .menu ul li {
+     margin: 0 15px;
+   }
+   .menu ul li a {
+     text-decoration: none;
+     color: #ffffff;
+     font-size: 16px;
+     padding: 10px 20px;
+     transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+     background-color: transparent;
+     border: 2px solid transparent;
+     border-radius: 8px;
+   }
+   .menu ul li a:hover {
+     color: #f8f8f8;
+     font-weight: bold;
+     transform: scale(1.2);
+     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+     border-color: #007BFF;
+   }
+   .menu ul li a.active {
+     border: 2px solid #007BFF;
+     color: white;
+     font-weight: bold;
+   }
+   .grid-container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin: 3cm 3cm 0 3cm;
+      flex-wrap: wrap;
+    }
+    @media only screen and (max-width: 767.98px) {
+      .navbar {
+        justify-content: space-between;
+      }
+      
+      .menu {
+        width: 100%;
+        display: none;
+      }
+      
+      .nav-toggle-label {
+        display: flex;
+      }
+
+      .nav-toggle:checked ~ .menu {
+        display: block;
+      }
+      
+      .menu ul {
+        flex-direction: column;
+        width: 100%;
+      }
+      .menu ul li {
+        margin: 10px 0;
+        text-align: center;
+      }
+      
+      .brand {
+        margin-right: 0;
+      }
+      .grid-container {
+        margin: 2cm 1cm 0 1cm;
+      }
+    }
+    .footer {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: white;
+   border: 2px solid rgba(5, 5, 5, 0.18);
+    padding: 8px 15px;
+    border-radius: 8px;
+    backdrop-filter: blur(8px);
+    text-align: center;
+}
+
+.footer-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.footer-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-text p {
+    margin: 2px 0;
+    font-weight: bold;
+}
+
+.creator {
+    font-size: 12px;
+    font-weight: normal;
+    color: #ccc;
+}
+
+@media only screen and (max-width: 767.98px) {
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px;
+    padding: 5rem 2rem;
+    margin-top: 1cm;
+  }
+
+  .product-card {
+    width: 100%; 
+  }
+}
+
+@media only screen and (max-width: 767px) {
+    .footer {
+        position: fixed;
+        right: 50%;
+        transform: translateX(50%);
+        bottom: 10px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .footer-logo {
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+    }
+
+    .creator {
+        font-size: 10px;
+    }
+}
+   
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="icon">
+      <a href="index.html" class="brand">
+        <img src="ss.png" alt="Business Logo" class="logo" />
+        <span class="brand-name">SHYAM SENITARIES</span>
+      </a>
+    </div>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <div class="menu">
+      <ul>
+        <li><a href="home.html">HOME</a></li>
+       <li><a href="Catalogue.html">CATALOGUE</a></li>
+       <li><a href="#" class="active">PRODUCTS</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="product-grid">
+    <div class="product-card"><img src="plumber mixer.png" alt="Product 1">
+        <h3>Plumber Mixer</h3>
+        <p>High-quality sanitaryware for modern homes.</p>
+    </div>
+    <div class="product-card"><img src="plumber set tap.png" alt="Product 2">
+        <h3>Plumber Tap Set</h3>
+        <p>Durable and stylish designs for your bathroom.</p>
+    </div>
+    <div class="product-card"><img src="asian paints tap.png" alt="Product 3">
+        <h3>Asian Paints Tap</h3>
+        <p>Elegant and long-lasting sanitary solutions.</p>
+    </div>
+    <div class="product-card"><img src="asian paints showerhead.png" alt="Product 4">
+        <h3>Asian Paints Showerhead</h3>
+        <p>Modern and sleek designs for contemporary spaces.</p>
+    </div>
+    <div class="product-card"><img src="jaguar mixer.png" alt="Product 5">
+        <h3>Jaguar mixer</h3>
+        <p>Premium quality products with durability.</p>
+    </div>
+    <div class="product-card"><img src="jaguar single liver mixer.png" alt="Product 6">
+        <h3>Jaguar single liver mixer</h3>
+        <p>Efficient and eco-friendly solutions.</p>
+    </div>
+    <div class="product-card"><img src="jaguar tap.png" alt="Product 7">
+        <h3>Jaguar tap</h3>
+        <p>High-performance sanitaryware with elegant design.</p>
+    </div>
+    <div class="product-card"><img src="jaquar basin tap.png" alt="Product 8">
+        <h3>Jaquar basin tap</h3>
+        <p>Enhance your home with top-notch products.</p>
+    </div>
+    <div class="product-card"><img src="jaquar health faucet.png" alt="Product 9">
+        <h3>Jaquar health faucet</h3>
+        <p>Designed to fit any modern or traditional space.</p>
+    </div>
+    <div class="product-card"><img src="sparsh tap blue.png" alt="Product 10">
+        <h3>Sparsh tap blue</h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+    <div class="product-card"><img src="sparsh tap wooden.png" alt="Product 11">
+        <h3>Sparsh tap wooden/h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+    <div class="product-card"><img src="sparsh tap.png" alt="Product 12">
+        <h3>Sparsh tap</h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+    <div class="product-card"><img src="product11.jpg" alt="Product 13">
+        <h3>Product 13</h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+    <div class="product-card"><img src="product11.jpg" alt="Product 14">
+        <h3>Product 14</h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+    <div class="product-card"><img src="product11.jpg" alt="Product 15">
+        <h3>Product 15</h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+    <div class="product-card"><img src="product11.jpg" alt="Product 16">
+        <h3>Product 16</h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+    <div class="product-card"><img src="product11.jpg" alt="Product 17">
+        <h3>Product 17</h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+    <div class="product-card"><img src="product11.jpg" alt="Product 18">
+        <h3>Product 18</h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+    <div class="product-card"><img src="product11.jpg" alt="Product 19">
+        <h3>Product 19</h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+    <div class="product-card"><img src="product11.jpg" alt="Product 20">
+        <h3>Product 20</h3>
+        <p>Unmatched quality with exquisite aesthetics.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <img src="DM.png" alt="Logo" class="footer-logo">
+    <div class="footer-text">
+      <p><strong>DEEP MAKWANA</strong></p>
+      <p class="creator-text">Creator</p>
+    </div>
+    
+  </div>
+</body>
+</html>
