@@ -51,55 +51,6 @@
       flex-wrap: wrap;
       margin: 3cm 3cm 0 3cm;
     }
-
-    .box {
-      width: 250px;
-      height: 250px;
-      perspective: 1000px;
-    }
-
-    .flip-card {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.6s;
-    }
-
-    .box:hover .flip-card {
-      transform: rotateY(180deg);
-    }
-
-    .front, .back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 15px;
-  padding: 20px;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out;
-}
-
-.front {
-  color: #fff;
-}
-
-.back {
-  transform: rotateY(180deg);
-  color: #050505;
-}
-
-
     .icon {
       display: flex;
       align-items: center;
@@ -175,6 +126,53 @@
   display: none;
 }
 
+
+    .box {
+      width: 250px;
+      height: 250px;
+      perspective: 1000px;
+    }
+
+    .flip-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+
+    .box:hover .flip-card {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.front {
+  color: #fff;
+}
+
+.back {
+  transform: rotateY(180deg);
+  color: #050505;
+}
 
 @media only screen and (max-width: 767.98px) {
  
@@ -437,8 +435,9 @@
     </label>
     <div class="menu">
       <ul>
-        <li><a href="#" class="active">HOME</a></li>
-        <li><a href="CATALOGUE.html">CATALOGUE</a></li>
+        <li><a href="index.html" class="active">HOME</a></li>
+        <li><a href="Catalogue.html">CATALOGUE</a></li>
+        <li><a href="Product.html">PRODUCTS</a></li>
         <li><a href="about.html">ABOUT</a></li>
         <li><a href="contact.html">CONTACT</a></li>
       </ul>
@@ -457,7 +456,7 @@
           Our Product Range
         </div>
         <div class="back">
-          Here you can explore a wide variety of products we offer, designed for both functionality and style.
+          Explore our wide range of products for every need.
         </div>
       </div>
     </div>
@@ -467,7 +466,7 @@
           Our Commitment
         </div>
         <div class="back">
-          We are committed to providing top-quality products that meet the highest standards of excellence.
+          We're dedicated to delivering top-quality products of the highest standards.
         </div>
       </div>
     </div>
@@ -477,7 +476,7 @@
           Why Choose Us?
         </div>
         <div class="back">
-          Discover the reasons why we are the preferred choice for customers looking for reliability and quality.
+          Explore why we're the top choice for reliability and quality.
         </div>
       </div>
     </div>
@@ -487,7 +486,7 @@
           Our Vision
         </div>
         <div class="back">
-          Our vision is to lead the market with innovative and sustainable solutions for all our customers.
+          Leading the market with innovative, sustainable solutions.
         </div>
       </div>
     </div>
@@ -497,7 +496,7 @@
             <p><strong>DEEP MAKWANA</strong></p>
             <p class="creator-text">Creator</p>
         </div>
-  </div> 
-  </div>
+    </div> 
+</div>
 </body>
 </html>
