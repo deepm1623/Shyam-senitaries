@@ -355,71 +355,62 @@
         margin: 2cm 1cm 0 1cm;
       }
     }
-    .footer {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: white;
-   border: 2px solid rgba(5, 5, 5, 0.18);
-    padding: 8px 15px;
-    border-radius: 8px;
-    backdrop-filter: blur(8px);
-    text-align: center;
+    #preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(15px);
+  text-align: center;
+  transition: opacity 0.5s ease;
 }
 
-.footer-logo {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    border-radius: 50%;
+#preloader.hide {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.footer-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.preloader-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
+  animation: zoomIn 0.6s ease;
 }
 
-.footer-text p {
-    margin: 2px 0;
-    font-weight: bold;
+.preloader-text {
+  font-size: 1.5rem;
+  color: #17b8e9;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
+  animation: fadeIn 0.6s ease;
 }
 
-.creator {
-    font-size: 12px;
-    font-weight: normal;
-    color: #ccc;
+@keyframes zoomIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-
-@media only screen and (max-width: 767px) {
-    .footer {
-        position: fixed;
-        right: 50%;
-        transform: translateX(50%);
-        bottom: 10px;
-        font-size: 12px;
-        padding: 6px 12px;
-    }
-
-    .footer-logo {
-        width: 25px;
-        height: 25px;
-        margin-right: 8px;
-    }
-
-    .creator {
-        font-size: 10px;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-  </style>
+</style>
   
 </head>
 <body>
+  <div id="preloader" style="display: none;">
+  <img src="ss.png" alt="Logo" class="preloader-logo" />
+  <p class="preloader-text">Welcome to Shyam Sanitaries...</p>
+</div>
+
+
   <div class="navbar">
     <div class="icon">
       <a href="index.html" class="brand">
@@ -490,13 +481,21 @@
         </div>
       </div>
     </div>
-    <div class="footer">
-        <img src="DM.png" alt="Logo" class="footer-logo">
-        <div class="footer-text">
-            <p><strong>DEEP MAKWANA</strong></p>
-            <p class="creator-text">Creator</p>
-        </div>
-    </div> 
 </div>
+<script>
+  window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
+    const alreadyShown = sessionStorage.getItem("preloaderShown");
+
+    if (!alreadyShown) {
+      preloader.style.display = "flex"; 
+      setTimeout(() => {
+        preloader.classList.add("hide");
+      }, 900); 
+      sessionStorage.setItem("preloaderShown", "true");
+    }
+  });
+</script>
+
 </body>
 </html>
