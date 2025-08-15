@@ -15,10 +15,15 @@
 }
 
 body {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #000000, #2c3e50, #bdc3c7);
-  color: #fff;
-}
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(44, 62, 80, 0.7), rgba(189, 195, 199, 0.7)),
+        url('bg.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
 .navbar {
   backdrop-filter: blur(30px);
   display: flex;

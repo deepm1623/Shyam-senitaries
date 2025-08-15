@@ -554,9 +554,7 @@
   </div>
 </section>
 
-
-
-  <section class="facts">
+<section class="facts">
     <h2>Did You Know?</h2>
     <div class="facts-grid">
       <div class="fact">
@@ -628,13 +626,10 @@
 
   <div class="whatsapp-widget">
   <div class="whatsapp-widget">
- 
-  <a id="whatsappLink" href="https://wa.me/919427744623" target="_blank">
+ <a id="whatsappLink" href="https://wa.me/919427744623" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
-
- 
-  <div class="whatsapp-box" id="whatsappBox">
+    <div class="whatsapp-box" id="whatsappBox">
     <div class="whatsapp-header">
       <strong>Shyam Sanitaries</strong>
       <span class="close-btn" onclick="toggleWhatsAppBox()">✕</span>
@@ -648,10 +643,7 @@
     </div>
   </div>
 </div>
-
-
-
-  <script>
+<script>
     window.addEventListener("load", () => {
       const preloader = document.getElementById("preloader");
       const alreadyShown = sessionStorage.getItem("preloaderShown");
@@ -694,19 +686,13 @@ function sendWhatsAppMessage() {
     window.open(url, "_blank");
   }
 }
-
 document.getElementById("sendBtn").addEventListener("click", sendWhatsAppMessage);
-
-
 document.getElementById("whatsappMessage").addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     e.preventDefault(); 
     sendWhatsAppMessage();
   }
 });
-
-    
-  </script>
-
+</script>
 </body>
 </html>
