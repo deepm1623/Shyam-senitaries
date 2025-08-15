@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Catalogue - Shyam Sanitaries</title>
   <link rel="website icon" type="png" href="ss.png" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <style>
 * {
   margin: 0;
@@ -18,7 +19,6 @@ body {
   background: linear-gradient(135deg, #000000, #2c3e50, #bdc3c7);
   color: #fff;
 }
-
 .navbar {
   backdrop-filter: blur(30px);
   display: flex;
@@ -60,13 +60,8 @@ body {
   transition: transform 0.3s ease;
 }
 
-.brand:hover .logo {
-  transform: scale(1.2);
-}
-
-.brand:hover .brand-name {
-  transform: scale(1.05);
-}
+.brand:hover .logo { transform: scale(1.2); }
+.brand:hover .brand-name { transform: scale(1.05); }
 
 .menu {
   display: flex;
@@ -112,57 +107,82 @@ body {
   transform: scaleX(1);
 }
 
-.menu ul li a:hover {
-  color: #f8f8f8;
-}
+.menu ul li a:hover { color: #f8f8f8; }
+.menu ul li a.active { font-weight: bold; }
 
-.menu ul li a.active {
-  font-weight: bold;
-}
-
-.nav-toggle,
-.nav-toggle-label {
-  display: none !important;
-}
+/* MOBILE VERSION */
+.fab-container { display: none; }
+.mobile-header { display: none; }
 
 @media only screen and (max-width: 767.98px) {
-  .navbar {
-    flex-direction: column;
+  .navbar { display: none; }
+
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 10px;
+    left: 2%;
+    width: 96%;
+    z-index: 200;
+    padding: 5px 10px;
+    backdrop-filter: blur(30px);
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+  }
+
+  .mobile-header .brand { margin-right: 0; }
+
+  .fab-container {
+    display: block;
+    position: relative;
+  }
+
+  .fab-main {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    left: 0;
-    border-radius: 0;
-    padding: 15px 20px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   }
 
-  .brand {
-    margin: 0 auto 10px;
+  .fab-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
   }
 
-  .menu {
-    width: 100%;
-    justify-content: center;
+  .fab-menu a {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 15px;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
 
-  .menu ul {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
+  .fab-container.open .fab-menu {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
   }
 
-  .menu ul li {
-    margin: 5px 10px;
-  }
-
-  .menu ul li a {
-    padding: 8px 12px;
-    display: inline-block;
-    text-align: center;
+  @keyframes slideDown {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 }
-
 .catalogue-container {
   margin-top: 2.5cm; 
   padding: 20px;
@@ -241,34 +261,43 @@ body {
 .download-btn:hover::before {
   left: 100%;
 }
-
-
   </style>
 </head>
 
 <body>
+  
   <div class="navbar">
-    <div class="icon">
-      <a href="index.html" class="brand">
-        <img src="ss.png" alt="Business Logo" class="logo" />
-        <span class="brand-name">SHYAM SANITARIES</span>
-      </a>
-    </div>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-    <label for="nav-toggle" class="nav-toggle-label">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
-    <div class="menu">
-      <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="Catalogue.html" class="active">CATALOGUE</a></li>
-        <li><a href="Product.html">PRODUCTS</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-      </ul>
+  <div class="icon">
+    <a href="index.html" class="brand">
+      <img src="ss.png" alt="Business Logo" class="logo" />
+      <span class="brand-name">SHYAM SANITARIES</span>
+    </a>
+  </div>
+  <div class="menu">
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="Catalogue.html"class="active">CATALOGUE</a></li>
+      <li><a href="Product.html">PRODUCTS</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+  </div>
+</div>
+  </div>
+<div class="mobile-header">
+  <a href="index.html" class="brand">
+    <img src="ss.png" alt="Business Logo" class="logo" />
+    <span class="brand-name">SHYAM SANITARIES</span>
+  </a>
+  <div class="fab-container">
+    <div class="fab-main"><i class='bx bx-menu'></i></div>
+    <div class="fab-menu">
+      <a href="index.html">Home</a>
+      <a href="Catalogue.html">Catalogue</a>
+      <a href="Product.html">Products</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
+</div>
 
   <div class="catalogue-container">
     
@@ -330,5 +359,16 @@ body {
     </div>
     
   </div>
+  <script>
+   document.addEventListener("DOMContentLoaded", function() {
+    const fabMain = document.querySelector(".fab-main");
+    const fabContainer = document.querySelector(".fab-container");
+    if (fabMain && fabContainer) {
+      fabMain.addEventListener("click", () => {
+        fabContainer.classList.toggle("open");
+      });
+    }
+  });
+    </script>
 </body>
 </html>

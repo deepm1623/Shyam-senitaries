@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Us - Shyam Sanitaries</title>
   <link rel="website icon" type="png" href="ss.png" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -23,8 +24,7 @@
       display: flex;
       flex-direction: column;
       background: linear-gradient(135deg, #000000, #2c3e50, #bdc3c7);
-    }
-.navbar {
+    }.navbar {
   backdrop-filter: blur(30px);
   display: flex;
   align-items: center;
@@ -41,96 +41,170 @@
   flex-wrap: wrap;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
+.brand .logo {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
 
-    .brand .logo {
-      height: 50px;
-      transition: transform 0.3s ease;
-    }
+.brand .brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 10px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff, #bdc3c7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
+}
 
-    .brand .brand-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      font-weight: bold;
-      margin-left: 10px;
-      background: linear-gradient(135deg, #00c6ff, #0072ff, #bdc3c7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease;
-    }
+.brand:hover .logo { transform: scale(1.2); }
+.brand:hover .brand-name { transform: scale(1.05); }
 
-    .brand:hover .logo {
-      transform: scale(1.2);
-    }
-
-    .brand:hover .brand-name {
-      transform: scale(1.05);
-    }
-
-    
 .menu {
   display: flex;
   justify-content: flex-end; 
   flex: 1; 
 }
 
-    .menu ul {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-    }
+.menu ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
 
-    .menu ul li {
-      margin: 0 15px;
-    }
+.menu ul li {
+  margin: 0 15px;
+}
 
-    .menu ul li a {
-      position: relative;
-      text-decoration: none;
-      color: #ffffff;
-      font-size: 16px;
-      padding: 10px 20px;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
+.menu ul li a {
+  position: relative;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
 
-    .menu ul li a::after {
-      content: "";
-      position: absolute;
-      bottom: 8px;
-      left: 20px;
-      right: 20px;
-      height: 2px;
-      background-color: #00c6ff;
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 0.3s ease;
-    }
+.menu ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background-color: #00c6ff;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
 
-    .menu ul li a:hover::after,
-    .menu ul li a.active::after {
-      transform: scaleX(1);
-    }
+.menu ul li a:hover::after,
+.menu ul li a.active::after {
+  transform: scaleX(1);
+}
 
-    .menu ul li a:hover {
-      color: #f8f8f8;
-    }
+.menu ul li a:hover { color: #f8f8f8; }
+.menu ul li a.active { font-weight: bold; }
 
-    .menu ul li a.active {
-      font-weight: bold;
-    }
+/* MOBILE VERSION */
+.fab-container { display: none; }
+.mobile-header { display: none; }
+@media only screen and (max-width: 767.98px) {
+  .navbar { display: none; }
 
-    .nav-toggle,
-    .nav-toggle-label {
-      display: none !important;
-    }
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(30px);
+    border-radius: 15px;
+  }
+
+  .mobile-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* space between logo and brand name */
+    flex-shrink: 0;
+    margin-left: 0; /* removes extra offset */
+  }
+
+  .mobile-header .brand .logo {
+    height: 50px;
+  }
+
+  .mobile-header .brand .brand-name {
+    font-size: 25px;
+    white-space: nowrap;
+  }
+
+  .fab-container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 0; /* keeps button at far right */
+  }
+}
+
+
+  .fab-main {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .fab-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fab-menu a {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 15px;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .fab-container.open .fab-menu {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  @keyframes slideDown {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
 
     .content {
       text-align: center;
@@ -300,29 +374,38 @@
   </style>
 </head>
 <body>
-  <div class="main">
-    <div class="navbar">
-      <div class="icon">
-        <a href="index.html" class="brand">
-          <img src="ss.png" alt="Business Logo" class="logo">
-          <span class="brand-name">SHYAM SANITARIES</span>
-        </a>
-      </div>
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-      <label for="nav-toggle" class="nav-toggle-label">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-      <div class="menu">
-        <ul>
-          <li><a href="index.html">HOME</a></li>
-          <li><a href="Catalogue.html">CATALOGUE</a></li>
-          <li><a href="Product.html">PRODUCTS</a></li>
-          <li><a href="contact.html" class="active">CONTACT</a></li>
-        </ul>
-      </div>
+<div class="navbar">
+  <div class="icon">
+    <a href="index.html" class="brand">
+      <img src="ss.png" alt="Business Logo" class="logo" />
+      <span class="brand-name">SHYAM SANITARIES</span>
+    </a>
+  </div>
+  <div class="menu">
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="Catalogue.html">CATALOGUE</a></li>
+      <li><a href="Product.html">PRODUCTS</a></li>
+      <li><a href="contact.html"class="active">CONTACT</a></li>
+    </ul>
+  </div>
+</div>
+
+  <div class="mobile-header">
+  <a href="index.html" class="brand">
+    <img src="ss.png" alt="Business Logo" class="logo" />
+    <span class="brand-name">SHYAM SANITARIES</span>
+  </a>
+  <div class="fab-container">
+    <div class="fab-main"><i class='bx bx-menu'></i></div>
+    <div class="fab-menu">
+      <a href="index.html">Home</a>
+      <a href="Catalogue.html">Catalogue</a>
+      <a href="Product.html">Products</a>
+      <a href="contact.html">Contact</a>
     </div>
+  </div>
+</div>
 
     <section id="contact">
       <div class="contact-info">
@@ -353,5 +436,16 @@
     </div>
   </div>
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script>
+     document.addEventListener("DOMContentLoaded", function() {
+    const fabMain = document.querySelector(".fab-main");
+    const fabContainer = document.querySelector(".fab-container");
+    if (fabMain && fabContainer) {
+      fabMain.addEventListener("click", () => {
+        fabContainer.classList.toggle("open");
+      });
+    }
+  });
+    </script>
 </body>
 </html>
