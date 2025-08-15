@@ -422,6 +422,78 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+   .whatsapp-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.whatsapp-widget img {
+  width: 55px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-widget img:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-box {
+  display: none;
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 260px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.whatsapp-header {
+  background: #25D366;
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.whatsapp-body {
+  padding: 10px;
+  font-size: 14px;
+  background: #ededed;
+  color: #000;
+}
+
+.whatsapp-footer {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.whatsapp-footer input {
+  flex: 1;
+  border: none;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.whatsapp-footer button {
+  background: #25D366;
+  color: rgb(3, 3, 3);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 16px;
+}
+
     
   </style>
 </head>
@@ -501,32 +573,83 @@
       </div>
     </div>
   </section>
-
-  <section class="partners">
-    <h2>Our Partners</h2>
-    <div class="partner-slider-wrapper">
-      <div class="partner-slider">
+<section class="partners">
+  <h2>Our Partners</h2>
+  <div class="partner-slider-wrapper">
+    <div class="partner-slider">
+      
+      <a href="https://www.wavin.com" target="_blank">
         <img src="wavinlogo.png" alt="Wavin">
+      </a>
+      <a href="https://www.plumberbathware.com" target="_blank">
         <img src="plumberlogo.png" alt="Plumber Bathware">
+      </a>
+      <a href="https://bathsense.asianpaints.com" target="_blank">
         <img src="bathsense logo.png" alt="Bathsense">
+      </a>
+      <a href="https://www.astralpipes.com" target="_blank">
         <img src="Astral Pipes Logo.png" alt="Astral Pipes">
-        
+      </a>
+      
+      <a href="https://www.wavin.com" target="_blank">
         <img src="wavinlogo.png" alt="Wavin">
+      </a>
+      <a href="https://www.plumberbathware.com" target="_blank">
         <img src="plumberlogo.png" alt="Plumber Bathware">
+      </a>
+      <a href="https://bathsense.asianpaints.com" target="_blank">
         <img src="bathsense logo.png" alt="Bathsense">
+      </a>
+      <a href="https://www.astralpipes.com" target="_blank">
         <img src="Astral Pipes Logo.png" alt="Astral Pipes">
-        
+      </a>
+      
+      <a href="https://www.wavin.com" target="_blank">
         <img src="wavinlogo.png" alt="Wavin">
+      </a>
+      <a href="https://www.plumberbathware.com" target="_blank">
         <img src="plumberlogo.png" alt="Plumber Bathware">
+      </a>
+      <a href="https://bathsense.asianpaints.com" target="_blank">
         <img src="bathsense logo.png" alt="Bathsense">
+      </a>
+      <a href="https://www.astralpipes.com" target="_blank">
         <img src="Astral Pipes Logo.png" alt="Astral Pipes">
-      </div>
+      </a>
+      
     </div>
-  </section>
+  </div>
+</section>
+
 
   <footer>
     <p>&copy; 2025 Shyam Sanitaries. All rights reserved.</p>
   </footer>
+
+  <div class="whatsapp-widget">
+  <div class="whatsapp-widget">
+ 
+  <a id="whatsappLink" href="https://wa.me/1234567890" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  </a>
+
+ 
+  <div class="whatsapp-box" id="whatsappBox">
+    <div class="whatsapp-header">
+      <strong>Shyam Sanitaries</strong>
+      <span class="close-btn" onclick="toggleWhatsAppBox()">✕</span>
+    </div>
+    <div class="whatsapp-body">
+      👋 Hi there! How can I help you?
+    </div>
+    <div class="whatsapp-footer">
+      <input type="text" id="whatsappMessage" placeholder="Type your message..." />
+      <button id="sendBtn">📨</button>
+    </div>
+  </div>
+</div>
+
+
 
   <script>
     window.addEventListener("load", () => {
@@ -548,14 +671,42 @@
     fabMain.addEventListener("click", () => {
       fabContainer.classList.toggle("open");
     });
-   
-    document.querySelector('.customer-support').addEventListener('click', function() {
-  window.open(
-    'https://wa.me/919876543210?text=Hello%20I%20need%20support%20regarding%20your%20products',
-    '_blank'
-  );
+
+    let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+if (isMobile) {
+  document.getElementById("whatsappLink").addEventListener("click", function (e) {
+    e.preventDefault();
+    toggleWhatsAppBox();
+  });
+}
+
+function toggleWhatsAppBox() {
+  let box = document.getElementById("whatsappBox");
+  box.style.display = (box.style.display === "block") ? "none" : "block";
+}
+
+function sendWhatsAppMessage() {
+  let msg = document.getElementById("whatsappMessage").value;
+  let phoneNumber = "919427744623"; 
+  if (msg.trim() !== "") {
+    let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
+  }
+}
+
+document.getElementById("sendBtn").addEventListener("click", sendWhatsAppMessage);
+
+
+document.getElementById("whatsappMessage").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault(); 
+    sendWhatsAppMessage();
+  }
 });
+
     
   </script>
+
 </body>
 </html>
