@@ -175,6 +175,7 @@
       flex: 1;
       padding: 20px;
     }
+    
 
     .highlight i {
       font-size: 48px;
@@ -184,7 +185,12 @@
 
     .highlight h3 {
       margin: 11px 0 5px;
+      transition: transform 0.3s ease;
     }
+    .highlight:hover i,
+.highlight:hover h3 {
+  transform: scale(1.05);
+}
 
     .highlight p {
       font-size: 11px;
@@ -465,16 +471,18 @@
   </div>
 
   <section class="highlights">
-    <div class="highlight">
-      <i class='bx bx-check-shield'></i>
-      <h3>Trusted Quality</h3>
-    </div>
+  <div class="highlight">
+    <i class='bx bx-check-shield'></i>
+    <h3>Trusted Quality</h3>
+  </div>
 
-    <div class="highlight">
-      <i class='bx bx-support'></i>
-      <h3>Customer Support</h3>
-    </div>
-  </section>
+  <div class="highlight customer-support">
+    <i class='bx bx-support'></i>
+    <h3>Customer Support</h3>
+  </div>
+</section>
+
+
 
   <section class="facts">
     <h2>Did You Know?</h2>
@@ -540,6 +548,13 @@
     fabMain.addEventListener("click", () => {
       fabContainer.classList.toggle("open");
     });
+   
+    document.querySelector('.customer-support').addEventListener('click', function() {
+  window.open(
+    'https://wa.me/919876543210?text=Hello%20I%20need%20support%20regarding%20your%20products',
+    '_blank'
+  );
+});
     
   </script>
 </body>
