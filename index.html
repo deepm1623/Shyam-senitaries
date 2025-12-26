@@ -2,394 +2,664 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <meta name="google-adsense-account" content="ca-pub-9513435877533057">
-  <title>Shyam Sanitaries</title>
-  <link rel="website icon" type="png" href="ss.png" />
-  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta name="theme-color" content="#00c6ff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Shyam Sanitaries - Premium Sanitary Solutions</title>
+  <link rel="website icon" type="png" href="images/ss.png" />
+  <link rel="icon" type="image/png" href="images/favicon.ico">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9513435877533057"
-     crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9513435877533057" crossorigin="anonymous"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
+    
+    .hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: 
-        linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(44, 62, 80, 0.7), rgba(189, 195, 199, 0.7)),
-        url('bg.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-    }
-
-    .navbar {
-      backdrop-filter: blur(30px);
-      display: flex;
       align-items: center;
-      justify-content: space-between; 
-      padding: 10px 20px;
-      box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
-      position: fixed;
-      border: 2px solid rgba(255, 255, 255, 0.18);
-      width: 96%;
-      top: 10px;
-      left: 2%;
-      z-index: 100;
-      border-radius: 15px;
-      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 20px 80px;
+      position: relative;
     }
 
-    .icon {
-      display: flex;
-      align-items: center;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      margin-right: 4cm;
-    }
-
-    .brand .logo {
-      height: 50px;
-      transition: transform 0.3s ease;
-    }
-
-    .brand .brand-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      font-weight: bold;
-      margin-left: 10px;
-      background: linear-gradient(135deg, #00c6ff, #0072ff, #bdc3c7);
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      font-weight: 900;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff, var(--primary), var(--primary-dark), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease;
+      background-size: 300% 300%;
+      animation: gradientShift 4s ease infinite;
+      line-height: 1.2;
+      letter-spacing: -1px;
     }
 
-    .brand:hover .logo {
-      transform: scale(1.2);
+    .hero p {
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      max-width: 720px;
+      line-height: 1.7;
+      font-weight: 400;
     }
 
-    .brand:hover .brand-name {
-      transform: scale(1.05);
-    }
-
-    .nav-toggle,
-    .nav-toggle-label {
-      display: none;
-    }
-
-    .menu {
+    .cta-buttons {
       display: flex;
-      justify-content: flex-end; 
-      flex: 1; 
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .menu ul {
-      list-style-type: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
+    
+    .features {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .menu ul li {
-      margin: 0 15px;
+    .section-title {
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .menu ul li a {
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: var(--glass);
+      backdrop-filter: blur(25px) saturate(180%);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 45px 35px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      text-decoration: none;
-      color: #ffffff;
-      font-size: 16px;
-      padding: 10px 20px;
-      transition: color 0.3s ease, transform 0.3s ease;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
     }
 
-    .menu ul li a::after {
-      content: "";
+    .feature-card::before {
+      content: '';
       position: absolute;
-      bottom: 8px;
-      left: 20px;
-      right: 20px;
-      height: 2px;
-      background-color: #00c6ff;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
       transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
     }
 
-    .menu ul li a:hover::after,
-    .menu ul li a.active::after {
+    .feature-card:hover::before {
       transform: scaleX(1);
     }
 
-    .menu ul li a:hover {
-      color: #f8f8f8;
+    .feature-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: var(--shadow-xl), var(--shadow-glow);
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.12);
     }
 
-    .menu ul li a.active {
-      font-weight: bold;
-    }
-
-    .content {
+    .feature-card i {
+      font-size: 60px;
+      color: var(--primary);
+      margin-bottom: 20px;
       display: block;
-      padding-top: 3cm;
-      text-align: center;
-      color: #fff;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      filter: drop-shadow(0 4px 12px rgba(0, 198, 255, 0.4));
     }
 
-    .content h1 {
-      font-size: 36px;
-      margin-bottom: 30px;
+    .feature-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--text-light);
     }
 
-    .content p {
-      font-size: 18px;
-      color: #f0ebeb;
+    .feature-card p {
+      color: var(--accent);
+      line-height: 1.6;
+      font-size: 14px;
     }
 
-    .highlights {
-      display: flex;
-      justify-content: center;
-      gap: 50px;
-      margin: 50px auto;
-      max-width: 1000px;
-      color: #fff;
-      text-align: center;
-    }
-
-    .highlight {
-      flex: 1;
-      padding: 20px;
-    }
     
+    .stats {
+      padding: 100px 20px;
+      background: transparent;
+    }
 
-    .highlight i {
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 40px 30px;
+      background: var(--glass);
+      backdrop-filter: blur(25px);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 24px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-card:hover {
+      transform: scale(1.08) translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-xl), var(--shadow-glow);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .stat-card h3 {
       font-size: 48px;
-      color: #00c6ff;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 10px;
     }
 
-    .highlight h3 {
-      margin: 11px 0 5px;
-      transition: transform 0.3s ease;
-    }
-    .highlight:hover i,
-.highlight:hover h3 {
-  transform: scale(1.05);
-}
-
-    .highlight p {
-      font-size: 11px;
-      color: #ddd;
-    }
-
-    .facts {
-      text-align: center;
-      color: #fff;
-      padding: 50px 20px;
-    }
-
-    .facts-grid {
-      display: flex;
-      justify-content: center;
-      gap: 50px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .fact h3 {
-      font-size: 40px;
-      color: #00c6ff;
-    }
-
-    .fact p {
-      font-size: 14px;
-      color: #ddd;
-    }
-
-   
-    .partners {
-      text-align: center;
-      padding: 50px 20px;
-      color: #fff;
-      margin-top: 7cm;
-    }
-
-    .partners h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 30px;
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text; 
-  color: transparent;
-}
-    .partner-slider-wrapper {
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .partner-slider {
-      display: flex;
-      gap: 50px;
-      animation: scroll 20s linear infinite;
-      width: max-content;
-    }
-
-    .partner-slider img {
-      height: 60px;
-      opacity: 0.85;
-      transition: all 0.3s ease-in-out;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-    }
-
-    .partner-slider img:hover {
-      transform: scale(1.1);
-      opacity: 1;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    footer {
-      background: linear-gradient(135deg, #000000, #2c3e50, #bdc3c7);
-      color: #f0f0f0;
-      text-align: center;
-      padding: 20px 0;
-      font-size: 14px;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      margin-top: auto;
+    .stat-card p {
+      color: var(--accent);
+      font-size: 16px;
+      font-weight: 500;
     }
 
     
-    .fab-container {
-      display: none;
+    .partners {
+      padding: 100px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
-.mobile-header {
-  display: none;
-}
 
-    @media only screen and (max-width: 767.98px) {
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .partner-card {
+      background: var(--glass);
+      backdrop-filter: blur(25px);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 45px 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      min-height: 160px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .partner-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-xl), var(--shadow-glow);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .partner-card img {
+      max-width: 100%;
+      max-height: 80px;
+      filter: grayscale(50%) brightness(1.1);
+      transition: all 0.4s ease;
+    }
+
+    .partner-card:hover img {
+      filter: grayscale(0%) brightness(1.3);
+      transform: scale(1.1);
+    }
+
+    
+    .partner-card img[alt="Astral Pipes"],
+    .partner-card img[src*="Astral"] {
+      filter: grayscale(20%) brightness(1.5) contrast(1.3);
+    }
+
+    .partner-card:hover img[alt="Astral Pipes"],
+    .partner-card:hover img[src*="Astral"] {
+      filter: grayscale(0%) brightness(1.7) contrast(1.4);
+    }
+
+    
+    .wavin-supreme-card {
+      position: relative;
+      overflow: visible;
+    }
+
+    .wavin-supreme-card img,
+    .wavin-supreme-card .transition-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .wavin-logo {
+      opacity: 1;
+      filter: grayscale(50%) brightness(1.1);
+      max-width: 100%;
+      max-height: 80px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      transition: all 0.4s ease;
+    }
+
+    .supreme-logo {
+      opacity: 0;
+      filter: grayscale(0%) brightness(1.5) contrast(1.2);
+      max-width: 100%;
+      max-height: 80px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      transition: all 0.4s ease;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .wavin-supreme-card.show-supreme .supreme-logo {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+      filter: grayscale(0%) brightness(1.5) contrast(1.2);
+    }
+
+    .transition-text {
+      opacity: 0;
+      font-size: 20px;
+      font-weight: 800;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-style: italic;
+      text-align: center;
+      white-space: nowrap;
+      pointer-events: none;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transform: translate(-50%, -50%) scale(0.8);
+      z-index: 10;
+      letter-spacing: 1px;
+      text-shadow: 0 0 20px rgba(0, 198, 255, 0.3);
+    }
+
+    .wavin-supreme-card.show-text .wavin-logo,
+    .wavin-supreme-card.show-supreme .wavin-logo {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    .wavin-supreme-card.show-text .transition-text {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .wavin-supreme-card.show-supreme .supreme-logo {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.15);
+      filter: grayscale(0%) brightness(1.5) contrast(1.2);
+    }
+
+    .wavin-supreme-card.show-supreme .transition-text {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    .wavin-supreme-card:hover .wavin-logo,
+    .wavin-supreme-card:hover .supreme-logo {
+      filter: grayscale(0%) brightness(1.3);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .transition-text {
+        font-size: 16px;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    
+    footer {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(10, 15, 25, 0.98));
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      color: #f0f0f0;
+      padding: 60px 40px 30px;
+      margin-top: 100px;
+      border-top: 2px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 198, 255, 0.5), transparent);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 1.8;
+      transition: all 0.3s ease;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer-section a:hover {
+      color: #00c6ff;
+      transform: translateX(5px);
+      padding-left: 5px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .footer-brand img {
+      height: 45px;
+      filter: drop-shadow(0 4px 8px rgba(0, 198, 255, 0.3));
+    }
+
+    .footer-brand span {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-section .description {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a i {
+      font-size: 16px;
+      width: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #00c6ff;
+      transform: translateX(5px);
+    }
+
+    .footer-links a:hover i {
+      transform: scale(1.2);
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .footer-contact-item i {
+      font-size: 18px;
+      color: #00c6ff;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .footer-contact-item span {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 20px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      margin-bottom: 0;
+    }
+
+    .footer-social a:hover {
+      background: rgba(0, 198, 255, 0.2);
+      border-color: rgba(0, 198, 255, 0.5);
+      color: #00c6ff;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 198, 255, 0.3);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
+    }
+
+    .footer-bottom .gst {
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+    }
+
+    
+    @media (max-width: 768px) {
       .navbar {
+        width: 98%;
+        padding: 12px 20px;
+      }
+
+      .nav-menu {
         display: none;
       }
 
-      .mobile-header {
+      .mobile-menu-btn {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: fixed;
-        top: 10px;
-        left: 2%;
-        width: 96%;
-        z-index: 200;
-        padding: 5px 10px;
-        backdrop-filter: blur(30px);
-        background: rgba(0,0,0,0.3);
-        border-radius: 15px;
       }
 
-      .mobile-header .brand {
-        margin-right: 0;
+      .hero {
+        padding: 120px 20px 60px;
       }
 
-      .fab-container {
-        display: block;
-        position: relative;
-      }
-
-      .fab-main {
-        background: linear-gradient(135deg, #00c6ff, #0072ff);
-        color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      }
-
-      .fab-menu {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        display: none;
+      .cta-buttons {
         flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .features-grid,
+      .stats-grid,
+      .partners-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        padding: 50px 20px 25px;
+      }
+
+      .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .footer-section h3 {
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      footer {
+        padding: 40px 15px 20px;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 25px;
+      }
+
+      .footer-section h3 {
+        font-size: 15px;
+        margin-bottom: 15px;
+      }
+
+      .footer-brand {
+        margin-bottom: 15px;
+      }
+
+      .footer-brand img {
+        height: 40px;
+      }
+
+      .footer-brand span {
+        font-size: 18px;
+      }
+
+      .footer-social {
+        gap: 12px;
+        margin-top: 15px;
+      }
+
+      .footer-social a {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 20px;
         gap: 10px;
       }
 
-      .fab-menu a {
-        background: rgba(0, 0, 0, 0.8);
-        padding: 10px 15px;
-        border-radius: 25px;
-        color: white;
-        text-decoration: none;
-        font-size: 14px;
-        white-space: nowrap;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      }
-
-      .fab-container.open .fab-menu {
-        display: flex;
-        animation: slideDown 0.3s ease forwards;
-      }
-.fab {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.fab:active {
-  transform: scale(0.85);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-}
-
-      @keyframes slideDown {
-        0% { opacity: 0; transform: translateY(-10px); }
-        100% { opacity: 1; transform: translateY(0); }
+      .footer-bottom p {
+        font-size: 12px;
       }
     }
 
+    
     #preloader {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.85);
+      background: var(--bg-dark);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 9999;
-      backdrop-filter: blur(15px);
-      text-align: center;
+      z-index: 99999;
       transition: opacity 0.5s ease;
     }
 
@@ -400,16 +670,14 @@
 
     .preloader-logo {
       width: 100px;
-      height: auto;
       margin-bottom: 20px;
       animation: zoomIn 0.6s ease;
     }
 
     .preloader-text {
       font-size: 1.5rem;
-      color: #17b8e9;
+      color: var(--primary);
       font-weight: bold;
-      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
       animation: fadeIn 0.6s ease;
     }
 
@@ -422,277 +690,659 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
-   .whatsapp-widget {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
-}
-
-.whatsapp-widget img {
-  width: 55px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.whatsapp-widget img:hover {
-  transform: scale(1.1);
-}
-
-.whatsapp-box {
-  display: none;
-  position: absolute;
-  bottom: 70px;
-  right: 0;
-  width: 260px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-}
-
-.whatsapp-header {
-  background: #25D366;
-  color: #fff;
-  padding: 10px;
-  font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.whatsapp-body {
-  padding: 10px;
-  font-size: 14px;
-  background: #ededed;
-  color: #000;
-}
-
-.whatsapp-footer {
-  display: flex;
-  border-top: 1px solid #ddd;
-}
-
-.whatsapp-footer input {
-  flex: 1;
-  border: none;
-  padding: 8px;
-  font-size: 14px;
-}
-
-.whatsapp-footer button {
-  background: #25D366;
-  color: rgb(3, 3, 3);
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-.close-btn {
-  cursor: pointer;
-  font-size: 16px;
-}
 
     
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0, 198, 255, 0.4);
+    }
+
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 198, 255, 0.6);
+      background: var(--primary-dark);
+    }
+
+    
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    
+    .stat-card h3 {
+      counter-reset: count;
+    }
+
+    .stat-number {
+      display: inline-block;
+    }
+
+    
+    .services {
+      padding: 100px 20px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 60px auto 0;
+    }
+
+    .service-card {
+      background: var(--glass);
+      backdrop-filter: blur(25px);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-xl), var(--shadow-glow);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .service-card i {
+      font-size: 50px;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: block;
+      filter: drop-shadow(0 4px 12px rgba(0, 198, 255, 0.4));
+    }
+
+    .service-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--accent);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    
+    .cta-banner {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta-banner-content {
+      background: var(--glass);
+      backdrop-filter: blur(25px);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 32px;
+      padding: 60px 40px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .cta-banner p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-banner-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-banner-content {
+        padding: 40px 25px;
+      }
+
+      .cta-banner-buttons {
+        flex-direction: column;
+      }
+
+      .cta-banner-buttons .btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
-  <div id="preloader" style="display: none;">
-    <img src="ss.png" alt="Logo" class="preloader-logo" />
+  <div id="preloader">
+    <img src="images/ss.png" alt="Logo" class="preloader-logo" />
     <p class="preloader-text">Welcome to Shyam Sanitaries...</p>
   </div>
 
-  <div class="navbar">
-    <div class="icon">
-      <a href="index.html" class="brand">
-        <img src="ss.png" alt="Business Logo" class="logo" />
-        <span class="brand-name">SHYAM SANITARIES</span>
-      </a>
-    </div>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-    <div class="menu">
-      <ul>
-        <li><a href="index.html" class="active">HOME</a></li>
-        <li><a href="Catalogue.html">CATALOGUE</a></li>
-        <li><a href="Product.html">PRODUCTS</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="mobile-header">
+  <nav class="navbar" id="navbar">
     <a href="index.html" class="brand">
-      <img src="ss.png" alt="Business Logo" class="logo" />
+      <img src="images/ss.png" alt="Logo" class="logo" />
       <span class="brand-name">SHYAM SANITARIES</span>
     </a>
-    <div class="fab-container">
-      <div class="fab-main"><i class='bx bx-menu'></i></div>
-      <div class="fab-menu">
-        <a href="index.html">Home</a>
-        <a href="Catalogue.html">Catalogue</a>
-        <a href="Product.html">Products</a>
-        <a href="contact.html"> Contact</a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="active"><i class='bx bx-home'></i><span>Home</span></a></li>
+      <li><a href="Catalogue.html"><i class='bx bx-book'></i><span>Catalogue</span></a></li>
+      <li><a href="contact.html"><i class='bx bx-phone'></i><span>Contact</span></a></li>
+    </ul>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <img src="images/ss.png" alt="Logo" class="logo" />
+      <span class="brand-name">SHYAM SANITARIES</span>
+    </div>
+    
+    <a href="index.html" class="active"><i class='bx bx-home'></i> Home</a>
+    <a href="Catalogue.html"><i class='bx bx-book'></i> Catalogue</a>
+    <a href="contact.html"><i class='bx bx-phone'></i> Contact</a>
+    
+    <div class="mobile-menu-info">
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-phone'></i>
+        <a href="tel:+919427744623">+91 9427744623</a>
       </div>
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-envelope'></i>
+        <a href="mailto:mahendramakwana446@gmail.com">mahendramakwana446@gmail.com</a>
+      </div>
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-map'></i>
+        <span>9, Shyam Sundar Complex, Liliya Road, Amreli</span>
+      </div>
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-time'></i>
+        <span>Mon-Sat: 8:00 AM - 8:00 PM</span>
+      </div>
+    </div>
+    
+    <div class="mobile-menu-social">
+      <a href="https://www.facebook.com/shyamsenitarisamreli.MahendraM" target="_blank" aria-label="Facebook">
+        <i class='bx bxl-facebook'></i>
+      </a>
+      <a href="https://wa.me/919427744623" target="_blank" aria-label="WhatsApp">
+        <i class='bx bxl-whatsapp'></i>
+      </a>
+      <a href="https://www.instagram.com/shyamsenitaris/" target="_blank" aria-label="Instagram">
+        <i class='bx bxl-instagram'></i>
+      </a>
+      <a href="https://www.google.com/search?client=ms-android-vivo-rvo3&sca_esv=fd368f2ad05e4b13&cs=0&hl=en-US&output=search&kgmid=%2Fg%2F11vsv4w47s&q=shyam%20sanitary" target="_blank" aria-label="Google">
+        <i class='bx bxl-google'></i>
+      </a>
     </div>
   </div>
 
-  <div class="content">
-    <h1 class="brand-name">Elegant Sanitary Solutions</h1>
-    <p>Premium quality for every home & business.</p>
-  </div>
-
-  <section class="highlights">
-  <div class="highlight">
-    <i class='bx bx-check-shield'></i>
-    <h3>Trusted Quality</h3>
-  </div>
-
-  <div class="highlight customer-support">
-    <i class='bx bx-support'></i>
-    <h3>Customer Support</h3>
-  </div>
-</section>
-
-<section class="facts">
-    <h2>Did You Know?</h2>
-    <div class="facts-grid">
-      <div class="fact">
-        <h3>25+</h3>
-        <p>Years of Experience</p>
+  <main>
+    <section class="hero">
+      <h1>Elegant Sanitary Solutions</h1>
+      <p>Premium quality fixtures and fittings for every home & business. Trusted by thousands across India.</p>
+      <div class="cta-buttons">
+        <a href="Catalogue.html" class="btn btn-primary">
+          <i class='bx bx-book'></i>
+          <span>View Catalogue</span>
+        </a>
+        <a href="contact.html" class="btn btn-outline">
+          <i class='bx bx-phone'></i>
+          <span>Contact Us</span>
+        </a>
       </div>
-      <div class="fact">
-        <h3>1L+</h3>
-        <p>Happy Customers</p>
-      </div>
-      <div class="fact">
-        <h3>50+</h3>
-        <p>Top Brands</p>
-      </div>
-    </div>
-  </section>
-<section class="partners">
-  <h2>Our Partners</h2>
-  <div class="partner-slider-wrapper">
-    <div class="partner-slider">
-      
-      <a href="https://www.wavin.com" target="_blank">
-        <img src="wavinlogo.png" alt="Wavin">
-      </a>
-      <a href="https://www.plumberbathware.com" target="_blank">
-        <img src="plumberlogo.png" alt="Plumber Bathware">
-      </a>
-      <a href="https://bathsense.asianpaints.com" target="_blank">
-        <img src="bathsense logo.png" alt="Bathsense">
-      </a>
-      <a href="https://www.astralpipes.com" target="_blank">
-        <img src="Astral Pipes Logo.png" alt="Astral Pipes">
-      </a>
-      
-      <a href="https://www.wavin.com" target="_blank">
-        <img src="wavinlogo.png" alt="Wavin">
-      </a>
-      <a href="https://www.plumberbathware.com" target="_blank">
-        <img src="plumberlogo.png" alt="Plumber Bathware">
-      </a>
-      <a href="https://bathsense.asianpaints.com" target="_blank">
-        <img src="bathsense logo.png" alt="Bathsense">
-      </a>
-      <a href="https://www.astralpipes.com" target="_blank">
-        <img src="Astral Pipes Logo.png" alt="Astral Pipes">
-      </a>
-      
-      <a href="https://www.wavin.com" target="_blank">
-        <img src="wavinlogo.png" alt="Wavin">
-      </a>
-      <a href="https://www.plumberbathware.com" target="_blank">
-        <img src="plumberlogo.png" alt="Plumber Bathware">
-      </a>
-      <a href="https://bathsense.asianpaints.com" target="_blank">
-        <img src="bathsense logo.png" alt="Bathsense">
-      </a>
-      <a href="https://www.astralpipes.com" target="_blank">
-        <img src="Astral Pipes Logo.png" alt="Astral Pipes">
-      </a>
-      
-    </div>
-  </div>
-</section>
+    </section>
 
+    <section class="features">
+      <h2 class="section-title fade-in">Why Choose Us</h2>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <i class='bx bx-check-shield'></i>
+          <h3>Trusted Quality</h3>
+          <p>Premium quality products from leading brands, ensuring durability and reliability for years to come.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <i class='bx bx-support'></i>
+          <h3>Expert Support</h3>
+          <p>Dedicated customer service team ready to assist you with expert advice and solutions.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <i class='bx bx-package'></i>
+          <h3>Wide Range</h3>
+          <p>Extensive collection of sanitaryware, faucets, and bathroom accessories from top manufacturers.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <i class='bx bx-time-five'></i>
+          <h3>25+ Years Experience</h3>
+          <p>Decades of industry expertise serving customers with excellence and commitment.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <i class='bx bx-dollar-circle'></i>
+          <h3>Competitive Pricing</h3>
+          <p>Best prices in the market with special discounts and offers for bulk orders and regular customers.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <i class='bx bx-truck'></i>
+          <h3>Fast Delivery</h3>
+          <p>Quick and reliable delivery service ensuring your products reach you on time, every time.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stats-grid">
+        <div class="stat-card fade-in">
+          <h3><span class="stat-number" data-target="25">0</span>+</h3>
+          <p>Years of Experience</p>
+        </div>
+        <div class="stat-card fade-in">
+          <h3><span class="stat-number" data-target="100">0</span>K+</h3>
+          <p>Happy Customers</p>
+        </div>
+        <div class="stat-card fade-in">
+          <h3><span class="stat-number" data-target="50">0</span>+</h3>
+          <p>Top Brands</p>
+        </div>
+        <div class="stat-card fade-in">
+          <h3><span class="stat-number" data-target="100">0</span>%</h3>
+          <p>Customer Satisfaction</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services">
+      <h2 class="section-title fade-in">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <i class='bx bx-droplet'></i>
+          <h3>Sanitaryware</h3>
+          <p>Premium quality bathroom fixtures including basins, commodes, and urinals from top brands.</p>
+        </div>
+        <div class="service-card fade-in">
+          <i class='bx bx-water'></i>
+          <h3>Faucets & Taps</h3>
+          <p>Wide range of modern and elegant faucets for kitchens and bathrooms with superior finish.</p>
+        </div>
+        <div class="service-card fade-in">
+          <i class='bx bx-tools'></i>
+          <h3>Plumbing Solutions</h3>
+          <p>Complete plumbing systems including pipes, fittings, and accessories for residential and commercial projects.</p>
+        </div>
+        <div class="service-card fade-in">
+          <i class='bx bx-shower'></i>
+          <h3>Bathroom Accessories</h3>
+          <p>Comprehensive collection of bathroom accessories including mirrors, shelves, and towel holders.</p>
+        </div>
+        <div class="service-card fade-in">
+          <i class='bx bx-wrench'></i>
+          <h3>Installation Support</h3>
+          <p>Expert installation services and technical support for all your sanitaryware needs.</p>
+        </div>
+        <div class="service-card fade-in">
+          <i class='bx bx-store'></i>
+          <h3>Bulk Orders</h3>
+          <p>Special pricing and dedicated support for bulk orders and commercial projects.</p>
+        </div>
+        <div class="service-card fade-in">
+          <i class='bx bx-home-heart'></i>
+          <h3>Home Solutions</h3>
+          <p>Complete home renovation solutions with expert consultation and quality products for modern living.</p>
+        </div>
+        <div class="service-card fade-in">
+          <i class='bx bx-buildings'></i>
+          <h3>Commercial Projects</h3>
+          <p>Comprehensive solutions for hotels, offices, and commercial spaces with project management support.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="cta-banner-content">
+        <h2>Ready to Transform Your Space?</h2>
+        <p>Get premium quality sanitary solutions for your home or business. Contact us today for expert advice and competitive pricing.</p>
+        <div class="cta-banner-buttons">
+          <a href="Catalogue.html" class="btn btn-primary">
+            <i class='bx bx-book'></i>
+            <span>Browse Catalogue</span>
+          </a>
+          <a href="contact.html" class="btn btn-outline">
+            <i class='bx bx-phone'></i>
+            <span>Get Quote</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="partners">
+      <h2 class="section-title fade-in">Our Trusted Partners</h2>
+      <div class="partners-grid">
+        <a href="https://www.supreme.co.in" target="_blank" class="partner-card wavin-supreme-card">
+          <img src="images/wavinlogo.png" alt="Wavin" class="wavin-logo">
+          <img src="images/Supreme logo.png" alt="Supreme" class="supreme-logo">
+          <div class="transition-text">Wavin is now Supreme</div>
+        </a>
+        <a href="https://www.plumberbathware.com" target="_blank" class="partner-card">
+          <img src="images/plumberlogo.png" alt="Plumber Bathware">
+        </a>
+        <a href="https://bathsense.asianpaints.com" target="_blank" class="partner-card">
+          <img src="images/bathsense logo.png" alt="Bathsense">
+        </a>
+        <a href="https://www.astralpipes.com" target="_blank" class="partner-card">
+          <img src="images/Astral Pipes Logo.png" alt="Astral Pipes">
+        </a>
+      </div>
+    </section>
+  </main>
+
+  
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <i class='bx bx-up-arrow-alt'></i>
+  </button>
 
   <footer>
-    <p>&copy; 2025 Shyam Sanitaries. All rights reserved.</p>
+    <div class="footer-container">
+      <div class="footer-section">
+        <div class="footer-brand">
+          <img src="images/ss.png" alt="Shyam Sanitaries Logo">
+          <span>SHYAM SANITARIES</span>
+        </div>
+        <p class="description">Premium quality sanitary solutions for every home & business. Trusted by thousands of customers across India.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/919427744623" target="_blank" title="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
+          <a href="https://www.facebook.com" target="_blank" title="Facebook"><i class='bx bxl-facebook'></i></a>
+          <a href="https://www.instagram.com" target="_blank" title="Instagram"><i class='bx bxl-instagram'></i></a>
+          <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class='bx bx-home'></i> Home</a></li>
+          <li><a href="Catalogue.html"><i class='bx bx-book'></i> Catalogue</a></li>
+          <li><a href="contact.html"><i class='bx bx-phone'></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <div class="footer-contact-item">
+          <i class='bx bx-phone'></i>
+          <span>+91 94277 44623</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-envelope'></i>
+          <span>makwanamahendra446@gmail.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-map'></i>
+          <span>Amreli, Gujarat, India</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-time'></i>
+          <span>Mon - Sat: 8:00 AM - 8:00 PM</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-time'></i>
+          <span>Sun: 8:00 AM - 1:30 PM</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Shyam Sanitaries. All rights reserved.</p>
+      <p class="gst">GST Number: 24AXRPM2773N1ZQ</p>
+    </div>
   </footer>
 
-  <div class="whatsapp-widget">
-  <div class="whatsapp-widget">
- <a id="whatsappLink" href="https://wa.me/919427744623" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-  </a>
-    <div class="whatsapp-box" id="whatsappBox">
-    <div class="whatsapp-header">
-      <strong>Shyam Sanitaries</strong>
-      <span class="close-btn" onclick="toggleWhatsAppBox()">✕</span>
-    </div>
-    <div class="whatsapp-body">
-      👋 Hi there! How can I help you?
-    </div>
-    <div class="whatsapp-footer">
-      <input type="text" id="whatsappMessage" placeholder="Type your message..." />
-      <button id="sendBtn">📨</button>
-    </div>
-  </div>
-</div>
-<script>
+  <script src="custom-popup.js"></script>
+  <script>
+    // Preloader
     window.addEventListener("load", () => {
       const preloader = document.getElementById("preloader");
       const alreadyShown = sessionStorage.getItem("preloaderShown");
-
       if (!alreadyShown) {
-        preloader.style.display = "flex"; 
         setTimeout(() => {
           preloader.classList.add("hide");
-        }, 1000); 
+          setTimeout(() => preloader.style.display = "none", 500);
+        }, 1000);
         sessionStorage.setItem("preloaderShown", "true");
+      } else {
+        preloader.style.display = "none";
       }
     });
 
-    const fabContainer = document.querySelector(".fab-container");
-    const fabMain = document.querySelector(".fab-main");
-
-    fabMain.addEventListener("click", () => {
-      fabContainer.classList.toggle("open");
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     });
 
-    let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  // Mobile menu
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      mobileMenuBtn.classList.toggle('active');
+      // Prevent body scroll when menu is open
+      if (mobileMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
 
-if (isMobile) {
-  document.getElementById("whatsappLink").addEventListener("click", function (e) {
-    e.preventDefault();
-    toggleWhatsAppBox();
-  });
-}
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
 
-function toggleWhatsAppBox() {
-  let box = document.getElementById("whatsappBox");
-  box.style.display = (box.style.display === "block") ? "none" : "block";
-}
+    // Close mobile menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
 
-function sendWhatsAppMessage() {
-  let msg = document.getElementById("whatsappMessage").value;
-  let phoneNumber = "919427744623"; 
-  if (msg.trim() !== "") {
-    let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
-    window.open(url, "_blank");
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (mobileMenu.classList.contains('active') && 
+          !mobileMenu.contains(e.target) && 
+          !mobileMenuBtn.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
   }
-}
-document.getElementById("sendBtn").addEventListener("click", sendWhatsAppMessage);
-document.getElementById("whatsappMessage").addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    e.preventDefault(); 
-    sendWhatsAppMessage();
-  }
-});
-</script>
+
+    // Active page highlighting
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-menu a, .mobile-menu a').forEach(link => {
+      if (link.getAttribute('href') === currentPage || 
+          (currentPage === '' && link.getAttribute('href') === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
+
+    // Wavin to Supreme Animation
+    const wavinCard = document.querySelector('.wavin-supreme-card');
+    if (wavinCard) {
+      // Reset animation state on page load
+      wavinCard.classList.remove('show-text', 'show-supreme');
+      
+      function startAnimation() {
+        // Show Wavin logo initially (already visible)
+        wavinCard.classList.remove('show-text', 'show-supreme');
+        
+        // After 1 second, show transition text
+        setTimeout(() => {
+          wavinCard.classList.add('show-text');
+          
+          // After 6 seconds of showing text, show Supreme logo permanently
+          setTimeout(() => {
+            wavinCard.classList.remove('show-text');
+            wavinCard.classList.add('show-supreme');
+            // Supreme logo stays permanent - no loop back
+          }, 6000); // 6 seconds for the text
+        }, 1000); // Initial delay before showing text
+      }
+      
+      // Start animation after page load
+      setTimeout(startAnimation, 2000);
+    }
+
+    // Scroll to Top Button
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    if (scrollToTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.classList.add('show');
+        } else {
+          scrollToTopBtn.classList.remove('show');
+        }
+      });
+
+      scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    // Scroll Animation Observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Animated Counter for Stats
+    function animateCounter(element, target, duration = 2000) {
+      let start = 0;
+      const increment = target / (duration / 16);
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+          element.textContent = target;
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(start);
+        }
+      }, 16);
+    }
+
+    // Observe stat cards for counter animation
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statNumber = entry.target.querySelector('.stat-number');
+          if (statNumber && !statNumber.classList.contains('animated')) {
+            const target = parseInt(statNumber.getAttribute('data-target'));
+            statNumber.classList.add('animated');
+            animateCounter(statNumber, target);
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-card').forEach(card => {
+      statObserver.observe(card);
+    });
+  </script>
 </body>
 </html>
+

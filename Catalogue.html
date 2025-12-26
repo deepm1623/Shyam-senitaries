@@ -2,11 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="theme-color" content="#00c6ff">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Catalogue - Shyam Sanitaries</title>
-  <link rel="website icon" type="png" href="ss.png" />
+  <link rel="website icon" type="png" href="images/ss.png" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
   <style>
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,124 +30,168 @@ body {
       flex-direction: column;
       background: 
         linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(44, 62, 80, 0.7), rgba(189, 195, 199, 0.7)),
-        url('bg.png') no-repeat center center fixed;
+        url('images/bg.png') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
     }
-.navbar {
-  backdrop-filter: blur(30px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between; 
-  padding: 10px 20px;
-  box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
-  position: fixed;
-  border: 2px solid rgba(255, 255, 255, 0.18);
-  width: 96%;
-  top: 10px;
-  left: 2%;
-  z-index: 100;
-  border-radius: 15px;
-  flex-wrap: wrap;
-}
 
-.brand {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
 
-.brand .logo {
-  height: 50px;
-  transition: transform 0.3s ease;
-}
-
-.brand .brand-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  font-weight: bold;
-  margin-left: 10px;
-  background: linear-gradient(135deg, #00c6ff, #0072ff, #bdc3c7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease;
-}
-
-.brand:hover .logo { transform: scale(1.2); }
-.brand:hover .brand-name { transform: scale(1.05); }
-
-.menu {
-  display: flex;
-  justify-content: flex-end; 
-  flex: 1; 
-}
-
-.menu ul {
-  list-style-type: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.menu ul li {
-  margin: 0 15px;
-}
-
-.menu ul li a {
-  position: relative;
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 16px;
-  padding: 10px 20px;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.menu ul li a::after {
-  content: "";
-  position: absolute;
-  bottom: 8px;
-  left: 20px;
-  right: 20px;
-  height: 2px;
-  background-color: #00c6ff;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.3s ease;
-}
-
-.menu ul li a:hover::after,
-.menu ul li a.active::after {
-  transform: scaleX(1);
-}
-
-.menu ul li a:hover { color: #f8f8f8; }
-.menu ul li a.active { font-weight: bold; }
-
-/* MOBILE VERSION */
-.fab-container { display: none; }
-.mobile-header { display: none; }
-
-@media only screen and (max-width: 767.98px) {
-  .navbar { display: none; }
-
-  .mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 10px;
-    left: 2%;
-    width: 96%;
-    z-index: 200;
-    padding: 5px 10px;
-    backdrop-filter: blur(30px);
-    background: rgba(0,0,0,0.3);
-    border-radius: 15px;
+@media only screen and (max-width: 1024px) {
+  .catalogue-container {
+    margin-top: 3cm;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .catalogue-card {
+    border-radius: 20px;
+  }
+  
+  .catalogue-card-image-wrapper {
+    min-height: 220px;
+    padding: 22px;
+  }
+  
+  .catalogue-card img {
+    height: 180px;
+    object-fit: contain;
+  }
+  
+  .catalogue-card h3 {
+    font-size: 19px;
+  }
+  
+  .catalogue-card p {
+    font-size: 14px;
+  }
+  
+  .download-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+  
+  footer {
+    padding: 50px 20px 25px;
   }
 
-  .mobile-header .brand { margin-right: 0; }
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 25px;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .catalogue-container {
+    margin-top: 2.5cm;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 0 15px;
+  }
+  
+  .catalogue-card {
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+  }
+  
+  .catalogue-card-image-wrapper {
+    min-height: 200px;
+    padding: 20px;
+  }
+  
+  .catalogue-card img {
+    height: 160px;
+    object-fit: contain;
+  }
+  
+  .catalogue-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .catalogue-card p {
+    font-size: 13px;
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+  
+  .download-btn {
+    padding: 12px 20px;
+    font-size: 13px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .catalogue-container {
+    margin-top: 2cm;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 0 12px;
+  }
+  
+  .catalogue-card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+  
+  .catalogue-card-image-wrapper {
+    min-height: 180px;
+    padding: 18px;
+  }
+  
+  .catalogue-card img {
+    height: 150px;
+    object-fit: contain;
+  }
+  
+  .catalogue-card h3 {
+    font-size: 16px;
+  }
+  
+  .catalogue-card p {
+    font-size: 12px;
+  }
+  
+  .download-btn {
+    padding: 11px 18px;
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .catalogue-card { 
+    margin-right: 0;
+    flex-shrink: 0;
+  }
+
+  .mobile-header .brand .brand-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 10px;
+    letter-spacing: 0.8px;
+  }
+  
+  .mobile-header .brand .logo {
+    height: 48px;
+  }
 
   .fab-container {
     display: block;
@@ -156,6 +210,63 @@ body {
     font-size: 24px;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    position: relative;
+  }
+
+  .fab-main:active {
+    transform: scale(0.9);
+  }
+
+  
+  .burger-icon {
+    width: 24px;
+    height: 18px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .burger-icon span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-origin: center;
+    position: absolute;
+  }
+
+  .burger-icon span:nth-child(1) {
+    top: 0;
+  }
+
+  .burger-icon span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .burger-icon span:nth-child(3) {
+    bottom: 0;
+  }
+
+  .fab-container.open .burger-icon span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .fab-container.open .burger-icon span:nth-child(2) {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+
+  .fab-container.open .burger-icon span:nth-child(3) {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
   }
 
   .fab-menu {
@@ -165,18 +276,44 @@ body {
     display: none;
     flex-direction: column;
     gap: 10px;
+    min-width: 180px;
+    z-index: 201;
   }
 
   .fab-menu a {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 12px 18px;
     border-radius: 25px;
     color: white;
     text-decoration: none;
     font-size: 14px;
     white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .fab-menu a:hover {
+    background: rgba(0, 198, 255, 0.3);
+    transform: translateX(-5px);
+  }
+
+  
+  
+
+  
+
+  
+
+  
+
+  
 
   .fab-container.open .fab-menu {
     display: flex;
@@ -187,9 +324,161 @@ body {
     0% { opacity: 0; transform: translateY(-10px); }
     100% { opacity: 1; transform: translateY(0); }
   }
+  
+  .catalogue-container {
+    margin-top: 2.5cm;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 0 15px;
+  }
+  
+  .catalogue-card {
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+  }
+  
+  .catalogue-card-image-wrapper {
+    min-height: 200px;
+    padding: 20px;
+  }
+  
+  .catalogue-card img {
+    height: 160px;
+    object-fit: contain;
+  }
+  
+  .catalogue-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .catalogue-card p {
+    font-size: 13px;
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+  
+  .download-btn {
+    padding: 12px 20px;
+    font-size: 13px;
+    width: 100%;
+  }
+  
+  footer {
+    padding: 40px 15px 20px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 25px;
+  }
+
+  .footer-section h3 {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+
+  .footer-brand {
+    margin-bottom: 15px;
+  }
+
+  .footer-brand img {
+    height: 40px;
+  }
+
+  .footer-brand span {
+    font-size: 18px;
+  }
+
+  .footer-social {
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .footer-social a {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 20px;
+    gap: 10px;
+  }
+
+  .footer-bottom p {
+    font-size: 12px;
+  }
 }
+
+
+@media only screen and (max-width: 480px) {
+  .catalogue-container {
+    margin-top: 2cm;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 0 12px;
+  }
+  
+  .catalogue-card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+  
+  .catalogue-card-image-wrapper {
+    min-height: 180px;
+    padding: 18px;
+  }
+  
+  .catalogue-card img {
+    height: 150px;
+    object-fit: contain;
+  }
+  
+  .catalogue-card h3 {
+    font-size: 16px;
+  }
+  
+  .catalogue-card p {
+    font-size: 12px;
+  }
+  
+  .download-btn {
+    padding: 11px 18px;
+    font-size: 12px;
+  }
+  
+  footer {
+    padding: 15px 10px;
+  }
+  
+  footer p {
+    font-size: 11px;
+  }
+}
+
+
+@media only screen and (max-width: 360px) {
+  .mobile-header .brand .brand-name {
+    font-size: 15px;
+    letter-spacing: 0.6px;
+  }
+  
+  .catalogue-card h3 {
+    font-size: 14px;
+  }
+  
+  .catalogue-card p {
+    font-size: 10px;
+  }
+}
+
 .catalogue-container {
-  margin-top: 2.5cm; 
+  margin-top: 4cm; 
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -199,56 +488,181 @@ body {
   margin-right: auto;
 }
 
-@media only screen and (max-width: 767.98px) {
-  .catalogue-container {
-  margin-top: 1.5cm;
-  grid-template-columns: repeat(2, 1fr);
-}
+.catalogue-card {
+  background: linear-gradient(145deg, rgba(20, 30, 50, 0.85), rgba(10, 15, 25, 0.9));
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: none !important;
 }
 
-.catalogue-card {
-  background: #111;
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 8px 30px rgba(0, 255, 255, 0.1), 0 0 20px rgba(0, 114, 255, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.catalogue-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 3px;
+  background: linear-gradient(180deg, #00c6ff, #0072ff, #00d4ff);
+  border-radius: 0 3px 3px 0;
+  opacity: 0;
+  transition: opacity 0.4s ease, top 0.4s ease, bottom 0.4s ease;
+  z-index: 2;
+}
+
+.catalogue-card:hover::before {
+  opacity: 1;
+  top: 10%;
+  bottom: 10%;
+  box-shadow: none;
+}
+
+.catalogue-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 198, 255, 0.03) 0%, rgba(0, 114, 255, 0.05) 100%);
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.catalogue-card:hover::after {
+  opacity: 1;
+  box-shadow: none;
 }
 
 .catalogue-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2), 0 0 30px rgba(0, 114, 255, 0.3);
+  transform: translateY(-15px) rotateX(2deg);
+  box-shadow: none !important;
+  border-color: rgba(0, 198, 255, 0.3);
+}
+
+.catalogue-card-image-wrapper {
+  position: relative;
+  padding: 25px 25px 20px 25px;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 270px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin: 0 0 10px 0;
+  box-shadow: none;
+}
+
+.catalogue-card-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 198, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+  box-shadow: none;
+  border-radius: 12px;
+}
+
+.catalogue-card:hover .catalogue-card-image-wrapper::before {
+  opacity: 1;
+  box-shadow: none;
 }
 
 .catalogue-card img {
   width: 100%;
-  border-radius: 10px;
-  margin-bottom: 15px;
+  height: 220px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 12px;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: none;
+  position: relative;
+  z-index: 0;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 5px;
+}
+
+.catalogue-card:hover img {
+  transform: scale(1.05);
+  box-shadow: none !important;
+}
+
+.catalogue-card-content {
+  padding: 0 25px 25px 25px;
+  position: relative;
+  z-index: 1;
 }
 
 .catalogue-card h3 {
-  margin-bottom: 10px;
-  font-size: 20px;
-  color: #fff;
+  font-size: 19px;
+  margin-bottom: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: all 0.4s ease;
+  letter-spacing: 0.2px;
+  text-shadow: none;
+}
+
+.catalogue-card:hover h3 {
+  color: #00d4ff;
+  transform: translateY(-3px);
+  text-shadow: none;
 }
 
 .catalogue-card p {
-  margin-bottom: 20px;
-  font-size: 14px;
-  color: #ccc;
+  font-size: 13px;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+.catalogue-card:hover p {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .download-btn {
   display: inline-block;
   margin-top: 10px;
-  padding: 8px 15px;
-  background: linear-gradient(90deg, #007bff, #0056b3);
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 50%, #00d4ff 100%);
+  background-size: 200% 200%;
   color: white;
-  border-radius: 5px;
+  border-radius: 14px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 15px;
   position: relative;
   overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 6px 20px rgba(0, 198, 255, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+    0 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  z-index: 1;
+  animation: gradientShift 3s ease infinite;
 }
 
 .download-btn::before {
@@ -258,122 +672,649 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease;
+  z-index: -1;
+}
+
+.download-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
-  transform: skewX(-30deg);
-  transition: left 0.5s;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  z-index: -1;
+}
+
+.download-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 
+    0 12px 32px rgba(0, 198, 255, 0.6),
+    0 0 0 2px rgba(255, 255, 255, 0.3) inset,
+    0 0 40px rgba(0, 198, 255, 0.4);
+  background-position: 100% 50%;
 }
 
 .download-btn:hover::before {
   left: 100%;
 }
-  </style>
+
+.download-btn:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.download-btn:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+
+footer {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(10, 15, 25, 0.98));
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  color: #f0f0f0;
+  padding: 60px 40px 30px;
+  margin-top: auto;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 198, 255, 0.5), transparent);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.footer-section p,
+.footer-section a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.8;
+  transition: all 0.3s ease;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.footer-section a:hover {
+  color: #00c6ff;
+  transform: translateX(5px);
+  padding-left: 5px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.footer-brand img {
+  height: 45px;
+  filter: drop-shadow(0 4px 8px rgba(0, 198, 255, 0.3));
+}
+
+.footer-brand span {
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-section .description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.footer-links a i {
+  font-size: 16px;
+  width: 20px;
+  transition: transform 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #00c6ff;
+  transform: translateX(5px);
+}
+
+.footer-links a:hover i {
+  transform: scale(1.2);
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.footer-contact-item i {
+  font-size: 18px;
+  color: #00c6ff;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.footer-contact-item span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-social {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.footer-social a {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  margin-bottom: 0;
+}
+
+.footer-social a:hover {
+  background: rgba(0, 198, 255, 0.2);
+  border-color: rgba(0, 198, 255, 0.5);
+  color: #00c6ff;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 198, 255, 0.3);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.footer-bottom .gst {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+
+.offline-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #ff4444, #ff6666, #ff4444);
+  background-size: 200% 100%;
+  color: white;
+  padding: 18px 30px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  z-index: 10000;
+  box-shadow: 0 4px 20px rgba(255, 68, 68, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  animation: slideDown 0.4s ease, gradientShift 3s ease infinite;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.offline-message.show {
+  display: flex;
+}
+
+.offline-message i {
+  font-size: 24px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+body.offline {
+  padding-top: 60px;
+}
+
+
+@media only screen and (max-width: 768px) and (orientation: landscape) and (max-height: 500px) {
+  .catalogue-container {
+    margin-top: 1.5cm;
+    padding: 15px;
+  }
+
+  .catalogue-header h1 {
+    font-size: 28px;
+  }
+
+  .catalogue-grid {
+    gap: 15px;
+  }
+
+  .catalogue-card {
+    padding: 20px;
+  }
+}
+</style>
 </head>
 
 <body>
+  <div class="offline-message" id="offlineMessage">
+    <i class='bx bx-wifi-off'></i>
+    <span>No Internet Connection - Please check your network settings</span>
+  </div>
   
-  <div class="navbar">
-  <div class="icon">
+  <nav class="navbar" id="navbar">
     <a href="index.html" class="brand">
-      <img src="ss.png" alt="Business Logo" class="logo" />
+      <img src="images/ss.png" alt="Logo" class="logo" />
       <span class="brand-name">SHYAM SANITARIES</span>
     </a>
-  </div>
-  <div class="menu">
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="Catalogue.html"class="active">CATALOGUE</a></li>
-      <li><a href="Product.html">PRODUCTS</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
+    <ul class="nav-menu">
+      <li><a href="index.html"><i class='bx bx-home'></i><span>Home</span></a></li>
+      <li><a href="Catalogue.html" class="active"><i class='bx bx-book'></i><span>Catalogue</span></a></li>
+      <li><a href="contact.html"><i class='bx bx-phone'></i><span>Contact</span></a></li>
     </ul>
-  </div>
-</div>
-  </div>
-<div class="mobile-header">
-  <a href="index.html" class="brand">
-    <img src="ss.png" alt="Business Logo" class="logo" />
-    <span class="brand-name">SHYAM SANITARIES</span>
-  </a>
-  <div class="fab-container">
-    <div class="fab-main"><i class='bx bx-menu'></i></div>
-    <div class="fab-menu">
-      <a href="index.html">Home</a>
-      <a href="Catalogue.html">Catalogue</a>
-      <a href="Product.html">Products</a>
-      <a href="contact.html">Contact</a>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <img src="images/ss.png" alt="Logo" class="logo" />
+      <span class="brand-name">SHYAM SANITARIES</span>
+    </div>
+    
+    <a href="index.html"><i class='bx bx-home'></i> Home</a>
+    <a href="Catalogue.html" class="active"><i class='bx bx-book'></i> Catalogue</a>
+    <a href="contact.html"><i class='bx bx-phone'></i> Contact</a>
+    
+    <div class="mobile-menu-info">
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-phone'></i>
+        <a href="tel:+919427744623">+91 9427744623</a>
+      </div>
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-envelope'></i>
+        <a href="mailto:mahendramakwana446@gmail.com">mahendramakwana446@gmail.com</a>
+      </div>
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-map'></i>
+        <span>9, Shyam Sundar Complex, Liliya Road, Amreli</span>
+      </div>
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-time'></i>
+        <span>Mon-Sat: 8:00 AM - 8:00 PM</span>
+      </div>
+    </div>
+    
+    <div class="mobile-menu-social">
+      <a href="https://www.facebook.com/shyamsenitarisamreli.MahendraM" target="_blank" aria-label="Facebook">
+        <i class='bx bxl-facebook'></i>
+      </a>
+      <a href="https://wa.me/919427744623" target="_blank" aria-label="WhatsApp">
+        <i class='bx bxl-whatsapp'></i>
+      </a>
+      <a href="https://www.instagram.com/shyamsenitaris/" target="_blank" aria-label="Instagram">
+        <i class='bx bxl-instagram'></i>
+      </a>
+      <a href="https://www.google.com/search?client=ms-android-vivo-rvo3&sca_esv=fd368f2ad05e4b13&cs=0&hl=en-US&output=search&kgmid=%2Fg%2F11vsv4w47s&q=shyam%20sanitary" target="_blank" aria-label="Google">
+        <i class='bx bxl-google'></i>
+      </a>
     </div>
   </div>
-</div>
 
   <div class="catalogue-container">
     
     <div class="catalogue-card">
-      <img src="Wavin.png" alt="Wavin Collection" />
-      <h3>Wavin Collection</h3>
-      <p>Quality piping systems for water management.</p>
-      <a href="Wavin.pdf" target="_blank" class="download-btn">Download</a>
+      <div class="catalogue-card-image-wrapper">
+        <img src="images/Wavin.png" alt="Wavin Collection" />
+      </div>
+      <div class="catalogue-card-content">
+        <h3>Wavin Collection</h3>
+        <p>Quality piping systems for water management.</p>
+        <a href="pdfs/Wavin.pdf" target="_blank" class="download-btn">Download</a>
+      </div>
     </div>
     
     <div class="catalogue-card">
-      <img src="bathsense product book.png" alt="Bathsense Collection" />
-      <h3>Bathsense Collection</h3>
-      <p>Elegant bath fittings for modern homes.</p>
-      <a href="Product Price.pdf" target="_blank" class="download-btn">Download</a>
+      <div class="catalogue-card-image-wrapper">
+        <img src="images/bathsense product book.png" alt="Bathsense Collection" />
+      </div>
+      <div class="catalogue-card-content">
+        <h3>Bathsense Collection</h3>
+        <p>Elegant bath fittings for modern homes.</p>
+        <a href="pdfs/Product Price.pdf" target="_blank" class="download-btn">Download</a>
+      </div>
     </div>
     
     <div class="catalogue-card">
-      <img src="Maxbi product.png" alt="Maxbi Collection" />
-      <h3>Maxbi Collection</h3>
-      <p>Premium sanitary collection for quality bathrooms.</p>
-      <a href="Maxbi.pdf" target="_blank" class="download-btn">Download</a>
+      <div class="catalogue-card-image-wrapper">
+        <img src="images/Maxbi product.png" alt="Maxbi Collection" />
+      </div>
+      <div class="catalogue-card-content">
+        <h3>Maxbi Collection</h3>
+        <p>Premium sanitary collection for quality bathrooms.</p>
+        <a href="pdfs/Maxbi.pdf" target="_blank" class="download-btn">Download</a>
+      </div>
     </div>
     
     <div class="catalogue-card">
-      <img src="Sparsh products.png" alt="Sparsh Collection" />
-      <h3>Sparsh Collection</h3>
-      <p>Stylish faucets and bathroom accessories.</p>
-      <a href="Sparsh.pdf" target="_blank" class="download-btn">Download</a>
+      <div class="catalogue-card-image-wrapper">
+        <img src="images/Sparsh products.png" alt="Sparsh Collection" />
+      </div>
+      <div class="catalogue-card-content">
+        <h3>Sparsh Collection</h3>
+        <p>Stylish faucets and bathroom accessories.</p>
+        <a href="pdfs/Sparsh.pdf" target="_blank" class="download-btn">Download</a>
+      </div>
     </div>
 
     <div class="catalogue-card">
-      <img src="Onas.png" alt="Onas Collection" />
-      <h3>Onas Collection</h3>
-      <p>Quality piping systems for water management.</p>
-      <a href="Onas Faucet.pdf" target="_blank" class="download-btn">Download</a>
+      <div class="catalogue-card-image-wrapper">
+        <img src="images/Onas.png" alt="Onas Collection" />
+      </div>
+      <div class="catalogue-card-content">
+        <h3>Onas Collection</h3>
+        <p>Quality piping systems for water management.</p>
+        <a href="pdfs/Onas Faucet.pdf" target="_blank" class="download-btn">Download</a>
+      </div>
     </div>
 
     
     <div class="catalogue-card">
-      <img src="plumber.png" alt="Plumber Faucet Collection" />
-      <h3>Plumber Faucet Collection</h3>
-      <p>Durable and stylish faucets for every need.</p>
-      <a href="plumber Faucet.pdf" target="_blank" class="download-btn">Download</a>
+      <div class="catalogue-card-image-wrapper">
+        <img src="images/plumber.png" alt="Plumber Faucet Collection" />
+      </div>
+      <div class="catalogue-card-content">
+        <h3>Plumber Faucet Collection</h3>
+        <p>Durable and stylish faucets for every need.</p>
+        <a href="pdfs/plumber Faucet.pdf" target="_blank" class="download-btn">Download</a>
+      </div>
     </div>
 
     <div class="catalogue-card">
-      <img src="Plumber Bathware.png" alt="Plumber Products Collection" />
-      <h3>Plumber Products Collection</h3>
-      <p>Complete plumber solutions for home improvement.</p>
-      <a href="plumber products.pdf" target="_blank" class="download-btn">Download</a>
+      <div class="catalogue-card-image-wrapper">
+        <img src="images/Plumber Bathware.png" alt="Plumber Products Collection" />
+      </div>
+      <div class="catalogue-card-content">
+        <h3>Plumber Products Collection</h3>
+        <p>Complete plumber solutions for home improvement.</p>
+        <a href="pdfs/plumber products.pdf" target="_blank" class="download-btn">Download</a>
+      </div>
     </div>
 
     <div class="catalogue-card">
-      <img src="Astral Pipes .png" alt="Astral Collection" />
-      <h3>Astral Collection</h3>
-      <p>Trusted piping solutions for your projects.</p>
-      <a href="Astral.pdf" target="_blank" class="download-btn">Download</a>
+      <div class="catalogue-card-image-wrapper">
+        <img src="images/Astral Pipes .png" alt="Astral Collection" />
+      </div>
+      <div class="catalogue-card-content">
+        <h3>Astral Collection</h3>
+        <p>Trusted piping solutions for your projects.</p>
+        <a href="pdfs/Astral.pdf" target="_blank" class="download-btn">Download</a>
+      </div>
     </div>
     
   </div>
+  <script src="custom-popup.js"></script>
   <script>
-   document.addEventListener("DOMContentLoaded", function() {
-    const fabMain = document.querySelector(".fab-main");
-    const fabContainer = document.querySelector(".fab-container");
-    if (fabMain && fabContainer) {
-      fabMain.addEventListener("click", () => {
-        fabContainer.classList.toggle("open");
-      });
+  
+  function checkConnection() {
+    const offlineMessage = document.getElementById('offlineMessage');
+    const body = document.body;
+    
+    if (!navigator.onLine) {
+      offlineMessage.classList.add('show');
+      body.classList.add('offline');
+    } else {
+      offlineMessage.classList.remove('show');
+      body.classList.remove('offline');
+    }
+  }
+
+  
+  window.addEventListener('load', checkConnection);
+
+  
+  window.addEventListener('online', function() {
+    checkConnection();
+    if (typeof showSuccess !== 'undefined') {
+      showSuccess('Internet connection restored!', 'Back Online');
     }
   });
+
+  
+  window.addEventListener('offline', function() {
+    checkConnection();
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    checkConnection();
+  });
+
+
+
+  
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+  });
+
+  // Mobile menu
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+        mobileMenuBtn.classList.toggle('active');
+        // Prevent body scroll when menu is open
+        if (mobileMenu.classList.contains('active')) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Close mobile menu on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          mobileMenuBtn.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+
+      // Close mobile menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+          mobileMenu.classList.remove('active');
+          mobileMenuBtn.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (mobileMenu.classList.contains('active') && 
+            !mobileMenu.contains(e.target) && 
+            !mobileMenuBtn.contains(e.target)) {
+          mobileMenu.classList.remove('active');
+          mobileMenuBtn.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Active page highlighting
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-menu a, .mobile-menu a').forEach(link => {
+      if (link.getAttribute('href') === currentPage || 
+          (currentPage === '' && link.getAttribute('href') === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
+  });
+
     </script>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <div class="footer-brand">
+          <img src="images/ss.png" alt="Shyam Sanitaries Logo">
+          <span>SHYAM SANITARIES</span>
+        </div>
+        <p class="description">Premium quality sanitary solutions for every home & business. Trusted by thousands of customers across India.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/919427744623" target="_blank" title="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
+          <a href="https://www.facebook.com" target="_blank" title="Facebook"><i class='bx bxl-facebook'></i></a>
+          <a href="https://www.instagram.com" target="_blank" title="Instagram"><i class='bx bxl-instagram'></i></a>
+          <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class='bx bx-home'></i> Home</a></li>
+          <li><a href="Catalogue.html"><i class='bx bx-book'></i> Catalogue</a></li>
+          <li><a href="contact.html"><i class='bx bx-phone'></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <div class="footer-contact-item">
+          <i class='bx bx-phone'></i>
+          <span>+91 94277 44623</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-envelope'></i>
+          <span>makwanamahendra446@gmail.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-map'></i>
+          <span>Amreli, Gujarat, India</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-time'></i>
+          <span>Mon - Sat: 8:00 AM - 8:00 PM</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-time'></i>
+          <span>Sun: 8:00 AM - 1:30 PM</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Shyam Sanitaries. All rights reserved.</p>
+      <p class="gst">GST Number: 24AXRPM2773N1ZQ</p>
+    </div>
+  </footer>
+
+<script>
+</script>
+
 </body>
 </html>
+
