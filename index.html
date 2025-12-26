@@ -55,6 +55,40 @@
       justify-content: center;
     }
 
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .scroll-indicator i {
+      font-size: 36px;
+      color: var(--primary);
+      filter: drop-shadow(0 2px 8px rgba(0, 198, 255, 0.4));
+      transition: all 0.3s ease;
+    }
+
+    .scroll-indicator:hover i {
+      transform: scale(1.2);
+      color: var(--primary-dark);
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
     
     .features {
       padding: 100px 20px;
@@ -594,6 +628,10 @@
         text-align: center;
         padding-top: 25px;
       }
+
+      .scroll-indicator {
+        display: none;
+      }
     }
 
     @media (max-width: 480px) {
@@ -957,6 +995,9 @@
           <i class='bx bx-phone'></i>
           <span>Contact Us</span>
         </a>
+      </div>
+      <div class="scroll-indicator" onclick="scrollToNextSection()">
+        <i class='bx bx-chevron-down'></i>
       </div>
     </section>
 
@@ -1342,6 +1383,14 @@
     document.querySelectorAll('.stat-card').forEach(card => {
       statObserver.observe(card);
     });
+
+    // Scroll to next section function
+    function scrollToNextSection() {
+      const nextSection = document.querySelector('.features');
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   </script>
 </body>
 </html>
