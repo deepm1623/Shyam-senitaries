@@ -738,6 +738,11 @@ body::before {
     align-items: center;
     z-index: 10;
   }
+
+  /* Add spacing below CTA buttons in hero section for small devices */
+  .hero .cta-buttons {
+    margin-bottom: 1cm;
+  }
 }
 
 @media (max-width: 480px) {
