@@ -728,15 +728,15 @@ body::before {
   }
 
   .scroll-indicator {
-    position: absolute;
-    left: 50%;
-    bottom: 90px; /* Move indicator higher for small screens */
-    transform: translateX(-50%);
-    margin: 0;
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
+     position: absolute;
+     left: 50%;
+     bottom: 180px; /* Move indicator even higher for small screens */
+     transform: translateX(-50%);
+     margin: 0;
+     display: flex !important;
+     justify-content: center;
+     align-items: center;
+     z-index: 10;
   }
 
   /* Add spacing below CTA buttons in hero section for small devices */
