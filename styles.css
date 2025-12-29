@@ -728,13 +728,15 @@ body::before {
   }
 
   .scroll-indicator {
-    position: static;
-    margin: 32px auto 0 auto;
+    position: absolute;
+    left: 50%;
+    bottom: 90px; /* Move indicator higher for small screens */
+    transform: translateX(-50%);
+    margin: 0;
     display: flex !important;
     justify-content: center;
     align-items: center;
-    left: unset;
-    transform: none;
+    z-index: 10;
   }
 }
 
