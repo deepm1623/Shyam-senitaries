@@ -99,6 +99,7 @@ body {
 
 @media only screen and (max-width: 768px) {
   .catalogue-container {
+    display: grid !important;
     margin-top: 2.5cm;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -141,8 +142,9 @@ body {
 
 @media only screen and (max-width: 480px) {
   .catalogue-container {
+    display: grid !important;
     margin-top: 2cm;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     padding: 0 12px;
   }

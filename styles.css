@@ -726,6 +726,16 @@ body::before {
     width: 100%;
     padding: 14px 28px;
   }
+
+  .scroll-indicator {
+    position: static;
+    margin: 32px auto 0 auto;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    left: unset;
+    transform: none;
+  }
 }
 
 @media (max-width: 480px) {
