@@ -589,7 +589,7 @@
       }
 
       .hero {
-        padding: 120px 20px 60px;
+        padding: 2cm 20px 60px;
       }
 
       .cta-buttons {
@@ -1030,9 +1030,9 @@
           <p>Best prices in the market with special discounts and offers for bulk orders and regular customers.</p>
         </div>
         <div class="feature-card fade-in">
-          <i class='bx bx-car'></i>
-          <h3>Fast Delivery</h3>
-          <p>Quick and reliable delivery service ensuring your products reach you on time, every time.</p>
+          <i class='bx bx-check-circle'></i>
+          <h3>Warranty & Support</h3>
+          <p>Comprehensive warranty coverage and dedicated after-sales support for all our products and installations.</p>
         </div>
       </div>
     </section>
@@ -1097,9 +1097,9 @@
           <p>Complete home renovation solutions with expert consultation and quality products for modern living.</p>
         </div>
         <div class="service-card fade-in">
-          <i class='bx bx-buildings'></i>
-          <h3>Commercial Projects</h3>
-          <p>Comprehensive solutions for hotels, offices, and commercial spaces with project management support.</p>
+          <i class='bx bx-cog'></i>
+          <h3>Repair & Maintenance</h3>
+          <p>Professional repair and maintenance services for all sanitaryware and plumbing fixtures with expert technicians.</p>
         </div>
       </div>
     </section>
@@ -1235,8 +1235,15 @@
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('active');
+    mobileMenuBtn.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  
   if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       mobileMenu.classList.toggle('active');
       mobileMenuBtn.classList.toggle('active');
       // Prevent body scroll when menu is open
@@ -1250,18 +1257,22 @@
     // Close mobile menu on link click
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
-        document.body.style.overflow = '';
+        closeMobileMenu();
       });
+    });
+
+    // Close mobile menu when clicking/touching anywhere inside the menu
+    mobileMenu.addEventListener('click', (e) => {
+      // Don't close if clicking on the menu button (handled separately)
+      if (!mobileMenuBtn.contains(e.target)) {
+        closeMobileMenu();
+      }
     });
 
     // Close mobile menu on escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-        mobileMenu.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
-        document.body.style.overflow = '';
+        closeMobileMenu();
       }
     });
 
@@ -1270,9 +1281,7 @@
       if (mobileMenu.classList.contains('active') && 
           !mobileMenu.contains(e.target) && 
           !mobileMenuBtn.contains(e.target)) {
-        mobileMenu.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
-        document.body.style.overflow = '';
+        closeMobileMenu();
       }
     });
   }
