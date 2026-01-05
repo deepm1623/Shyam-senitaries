@@ -897,10 +897,12 @@
     .discount-info-content h2 {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 800;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: linear-gradient(135deg, #ffd700, #ffa500, #ff6b35, #ffd700);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
       margin-bottom: 20px;
     }
 
@@ -1013,6 +1015,10 @@
         flex-direction: column;
         padding: 15px 20px;
         font-size: 1rem;
+      }
+
+      .discount-info .scroll-indicator {
+        bottom: 10px;
       }
     }
   </style>
