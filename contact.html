@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="theme-color" content="#00c6ff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Contact Us - Shyam Sanitaries</title>
+  <link rel="website icon" type="png" href="images/ss.png" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9513435877533057" crossorigin="anonymous"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0f19 0%, #0f172a 25%, #1e293b 50%, #334155 75%, #475569 100%);
+      background-attachment: fixed;
+      color: var(--text-light);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/bg.png') no-repeat center center;
+      background-size: cover;
+      opacity: 0.12;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .contact-hero {
+      text-align: center;
+      padding: 180px 20px 100px;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .contact-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      font-family: 'Montserrat', 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffffff, var(--primary), var(--primary-dark), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 300% 300%;
+      animation: gradientShift 4s ease infinite;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .contact-hero p {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 50px;
+      line-height: 1.8;
+    }
+
+    .quick-contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 80px;
+    }
+
+    .quick-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 35px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .quick-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .quick-btn:hover::before {
+      left: 100%;
+    }
+
+    .quick-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(0, 198, 255, 0.5);
+    }
+
+    .quick-btn i {
+      font-size: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .quick-btn:hover i {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    .quick-btn.call {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white;
+    }
+
+    .quick-btn.email {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+    }
+
+    .quick-btn.whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+    }
+
+    .contact-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .contact-card {
+      background: var(--glass);
+      backdrop-filter: blur(25px) saturate(180%);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 32px;
+      padding: 45px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark), var(--secondary));
+      background-size: 200% 100%;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    .contact-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-xl), var(--shadow-glow);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .contact-card-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 35px;
+    }
+
+    .contact-card-icon {
+      width: 65px;
+      height: 65px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(0, 198, 255, 0.2), rgba(0, 114, 255, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: var(--primary);
+      border: 2px solid rgba(0, 198, 255, 0.3);
+    }
+
+    .contact-card-header h2 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-light);
+      letter-spacing: 0.5px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .contact-info-item:hover {
+      background: rgba(0, 198, 255, 0.1);
+      border-color: rgba(0, 198, 255, 0.3);
+      transform: translateX(5px);
+    }
+
+    .contact-info-item i {
+      font-size: 24px;
+      color: var(--primary);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .contact-info-item-content strong {
+      display: block;
+      color: var(--text-light);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.8;
+    }
+
+    .contact-info-item-content span,
+    .contact-info-item-content a {
+      display: block;
+      color: var(--text-light);
+      font-size: 16px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info-item-content a:hover {
+      color: var(--primary);
+    }
+
+    .hours-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .hours-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .hours-item:hover {
+      background: rgba(0, 198, 255, 0.1);
+      border-color: rgba(0, 198, 255, 0.3);
+      transform: translateX(5px);
+    }
+
+    .hours-item .day {
+      font-weight: 600;
+      color: var(--text-light);
+      font-size: 16px;
+    }
+
+    .hours-item .time {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 16px;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    .contact-form {
+      background: var(--glass);
+      backdrop-filter: blur(25px) saturate(180%);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 32px;
+      padding: 45px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark), var(--secondary));
+      background-size: 200% 100%;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      color: var(--text-light);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      color: var(--text-light);
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 0 3px rgba(0, 198, 255, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px 35px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 6px 20px rgba(0, 198, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 198, 255, 0.6);
+    }
+
+    .map-section {
+      margin-top: 40px;
+    }
+
+    .map-card {
+      background: var(--glass);
+      backdrop-filter: blur(25px) saturate(180%);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.4s ease;
+    }
+
+    .map-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl), var(--shadow-glow);
+      border-color: var(--primary);
+    }
+
+    .map-header {
+      padding: 30px 40px;
+      background: linear-gradient(135deg, rgba(0, 198, 255, 0.2), rgba(0, 114, 255, 0.15));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .map-header i {
+      font-size: 30px;
+      color: var(--primary);
+    }
+
+    .map-header h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-light);
+      letter-spacing: 0.5px;
+    }
+
+    .map-embed {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .map-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .social-section {
+      margin-top: 60px;
+    }
+
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 18px;
+      text-decoration: none;
+      color: var(--text-light);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-item::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(0, 198, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+
+    .social-item:hover::before {
+      width: 100px;
+      height: 100px;
+    }
+
+    .social-item:hover {
+      background: rgba(0, 198, 255, 0.15);
+      border-color: var(--primary);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 25px rgba(0, 198, 255, 0.3);
+    }
+
+    .social-item i {
+      font-size: 32px;
+      color: var(--primary);
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+
+    .social-item:hover i {
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 10px rgba(0, 198, 255, 0.6));
+    }
+
+    @media (max-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .contact-hero {
+        padding: 160px 20px 80px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-hero {
+        padding: 140px 20px 60px;
+      }
+
+      .quick-contact-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .quick-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .contact-card,
+      .contact-form {
+        padding: 30px 25px;
+      }
+
+      .contact-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .contact-card-header h2 {
+        font-size: 24px;
+      }
+
+      .map-header {
+        padding: 25px 30px;
+      }
+
+      .map-header h3 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-hero {
+        padding: 120px 15px 50px;
+      }
+
+      .contact-card,
+      .contact-form {
+        padding: 25px 20px;
+      }
+
+      .contact-card-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 26px;
+      }
+
+      .social-item {
+        width: 60px;
+        height: 60px;
+      }
+
+      .social-item i {
+        font-size: 28px;
+      }
+    }
+
+    footer {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(10, 15, 25, 0.98));
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      color: #f0f0f0;
+      padding: 60px 40px 30px;
+      margin-top: 100px;
+      border-top: 2px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 198, 255, 0.5), transparent);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 1.8;
+      transition: all 0.3s ease;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer-section a:hover {
+      color: #00c6ff;
+      transform: translateX(5px);
+      padding-left: 5px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .footer-brand img {
+      height: 45px;
+      filter: drop-shadow(0 4px 8px rgba(0, 198, 255, 0.3));
+    }
+
+    .footer-brand span {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-section .description {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a i {
+      font-size: 16px;
+      width: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #00c6ff;
+      transform: translateX(5px);
+    }
+
+    .footer-links a:hover i {
+      transform: scale(1.2);
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .footer-contact-item i {
+      font-size: 18px;
+      color: #00c6ff;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .footer-contact-item span {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 20px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      margin-bottom: 0;
+    }
+
+    .footer-social a:hover {
+      background: rgba(0, 198, 255, 0.2);
+      border-color: rgba(0, 198, 255, 0.5);
+      color: #00c6ff;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 198, 255, 0.3);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
+    }
+
+    .footer-bottom .gst {
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      footer {
+        padding: 50px 20px 25px;
+      }
+
+      .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .footer-section h3 {
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      footer {
+        padding: 40px 15px 20px;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 25px;
+      }
+
+      .footer-section h3 {
+        font-size: 15px;
+        margin-bottom: 15px;
+      }
+
+      .footer-brand {
+        margin-bottom: 15px;
+      }
+
+      .footer-brand img {
+        height: 40px;
+      }
+
+      .footer-brand span {
+        font-size: 18px;
+      }
+
+      .footer-social {
+        gap: 12px;
+        margin-top: 15px;
+      }
+
+      .footer-social a {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 20px;
+        gap: 10px;
+      }
+
+      .footer-bottom p {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="brand">
+      <img src="images/ss.png" alt="Logo" class="logo" />
+      <span class="brand-name">SHYAM SANITARIES</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html"><i class='bx bx-home'></i><span>Home</span></a></li>
+      <li><a href="Catalogue.html"><i class='bx bx-book'></i><span>Catalogue</span></a></li>
+      <li><a href="contact.html" class="active"><i class='bx bx-phone'></i><span>Contact</span></a></li>
+    </ul>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <img src="images/ss.png" alt="Logo" class="logo" />
+      <span class="brand-name">SHYAM SANITARIES</span>
+    </div>
+    
+    <a href="index.html"><i class='bx bx-home'></i> Home</a>
+    <a href="Catalogue.html"><i class='bx bx-book'></i> Catalogue</a>
+    <a href="contact.html" class="active"><i class='bx bx-phone'></i> Contact</a>
+    
+    <div class="mobile-menu-info">
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-phone'></i>
+        <a href="tel:+919427744623">+91 9427744623</a>
+      </div>
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-envelope'></i>
+        <a href="mailto:mahendramakwana446@gmail.com">mahendramakwana446@gmail.com</a>
+      </div>
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-map'></i>
+        <span>9, Shyam Sundar Complex, Liliya Road, Amreli</span>
+      </div>
+      <div class="mobile-menu-info-item">
+        <i class='bx bx-time'></i>
+        <span>Mon-Sat: 8:00 AM - 8:00 PM</span>
+      </div>
+    </div>
+    
+    <div class="mobile-menu-social">
+      <a href="https://www.facebook.com/shyamsenitarisamreli.MahendraM" target="_blank" aria-label="Facebook">
+        <i class='bx bxl-facebook'></i>
+      </a>
+      <a href="https://wa.me/919427744623" target="_blank" aria-label="WhatsApp">
+        <i class='bx bxl-whatsapp'></i>
+      </a>
+      <a href="https://www.instagram.com/shyamsenitaris/" target="_blank" aria-label="Instagram">
+        <i class='bx bxl-instagram'></i>
+      </a>
+      <a href="https://www.google.com/search?client=ms-android-vivo-rvo3&sca_esv=fd368f2ad05e4b13&cs=0&hl=en-US&output=search&kgmid=%2Fg%2F11vsv4w47s&q=shyam%20sanitary" target="_blank" aria-label="Google">
+        <i class='bx bxl-google'></i>
+      </a>
+    </div>
+  </div>
+
+  <section class="contact-hero">
+    <h1>Get In Touch</h1>
+    <p>We're here to help! Reach out to us for any inquiries, quotes, or support. Our team is ready to assist you with all your sanitaryware needs.</p>
+    
+    <div class="quick-contact-buttons">
+      <a href="tel:+919427744623" class="quick-btn call">
+        <i class='bx bx-phone'></i>
+        <span>Call Now</span>
+      </a>
+      <a href="mailto:mahendramakwana446@gmail.com" class="quick-btn email">
+        <i class='bx bx-envelope'></i>
+        <span>Send Email</span>
+      </a>
+      <a href="https://wa.me/919427744623" target="_blank" class="quick-btn whatsapp">
+        <i class='bx bxl-whatsapp'></i>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="contact-main">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-card-header">
+          <div class="contact-card-icon">
+            <i class='bx bx-info-circle'></i>
+          </div>
+          <h2>Contact Details</h2>
+        </div>
+
+        <div class="contact-info-item">
+          <i class='bx bx-user'></i>
+          <div class="contact-info-item-content">
+            <strong>Name</strong>
+            <span>Mahendra Popatbhai Makwana</span>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <i class='bx bx-map'></i>
+          <div class="contact-info-item-content">
+            <strong>Address</strong>
+            <span>9, Shyam Sundar Complex,<br>Liliya Road (Near Hiramoti Chowk)<br>Amreli - 365601</span>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <i class='bx bx-phone-call'></i>
+          <div class="contact-info-item-content">
+            <strong>Phone</strong>
+            <a href="tel:+919427744623">+91 9427744623</a>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <i class='bx bx-envelope'></i>
+          <div class="contact-info-item-content">
+            <strong>Email</strong>
+            <a href="mailto:mahendramakwana446@gmail.com">mahendramakwana446@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-card-header">
+          <div class="contact-card-icon">
+            <i class='bx bx-time-five'></i>
+          </div>
+          <h2>Business Hours</h2>
+        </div>
+
+        <div class="hours-list">
+          <div class="hours-item">
+            <span class="day">Monday</span>
+            <span class="time">8:30 AM - 1:30 PM<br>3:00 PM - 8:30 PM</span>
+          </div>
+          <div class="hours-item">
+            <span class="day">Tuesday</span>
+            <span class="time">8:30 AM - 1:30 PM<br>3:00 PM - 8:30 PM</span>
+          </div>
+          <div class="hours-item">
+            <span class="day">Wednesday</span>
+            <span class="time">8:30 AM - 1:30 PM<br>3:00 PM - 8:30 PM</span>
+          </div>
+          <div class="hours-item">
+            <span class="day">Thursday</span>
+            <span class="time">8:30 AM - 1:30 PM<br>3:00 PM - 8:30 PM</span>
+          </div>
+          <div class="hours-item">
+            <span class="day">Friday</span>
+            <span class="time">8:30 AM - 1:30 PM<br>3:00 PM - 8:30 PM</span>
+          </div>
+          <div class="hours-item">
+            <span class="day">Saturday</span>
+            <span class="time">8:30 AM - 1:30 PM<br>3:00 PM - 8:30 PM</span>
+          </div>
+          <div class="hours-item">
+            <span class="day">Sunday</span>
+            <span class="time">8:00 AM - 1:30 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-form">
+        <div class="contact-card-header">
+          <div class="contact-card-icon">
+            <i class='bx bx-message-square-dots'></i>
+          </div>
+          <h2>Send Us a Message</h2>
+        </div>
+
+        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your name">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <i class='bx bx-paper-plane'></i> Send Message
+          </button>
+        </form>
+      </div>
+
+      <div class="map-section">
+        <div class="map-card">
+          <div class="map-header">
+            <i class='bx bx-map'></i>
+            <h3>Find Us On Map</h3>
+          </div>
+          <div class="map-embed">
+            <iframe 
+              src="https://www.google.com/maps?q=Shyam%20Sanitaries%20Amreli&output=embed"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-section">
+      <div class="contact-card">
+        <div class="contact-card-header">
+          <div class="contact-card-icon">
+            <i class='bx bx-share-alt'></i>
+          </div>
+          <h2>Follow Us</h2>
+        </div>
+        <div class="social-grid">
+          <a href="https://www.facebook.com/shyamsenitarisamreli.MahendraM" target="_blank" class="social-item" aria-label="Facebook">
+            <i class='bx bxl-facebook'></i>
+          </a>
+          <a href="https://wa.me/919427744623" target="_blank" class="social-item" aria-label="WhatsApp">
+            <i class='bx bxl-whatsapp'></i>
+          </a>
+          <a href="https://www.instagram.com/shyamsenitaris/" target="_blank" class="social-item" aria-label="Instagram">
+            <i class='bx bxl-instagram'></i>
+          </a>
+          <a href="https://www.google.com/search?client=ms-android-vivo-rvo3&sca_esv=fd368f2ad05e4b13&cs=0&hl=en-US&output=search&kgmid=%2Fg%2F11vsv4w47s&q=shyam%20sanitary" target="_blank" class="social-item" aria-label="Google">
+            <i class='bx bxl-google'></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <div class="footer-brand">
+          <img src="images/ss.png" alt="Shyam Sanitaries Logo">
+          <span>SHYAM SANITARIES</span>
+        </div>
+        <p class="description">Premium quality sanitary solutions for every home & business. Trusted by thousands of customers across India.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/919427744623" target="_blank" title="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
+          <a href="https://www.facebook.com/shyamsenitarisamreli.MahendraM" target="_blank" title="Facebook"><i class='bx bxl-facebook'></i></a>
+          <a href="https://www.instagram.com/shyamsenitaris/" target="_blank" title="Instagram"><i class='bx bxl-instagram'></i></a>
+          <a href="https://www.google.com/search?client=ms-android-vivo-rvo3&sca_esv=fd368f2ad05e4b13&cs=0&hl=en-US&output=search&kgmid=%2Fg%2F11vsv4w47s&q=shyam%20sanitary" target="_blank" title="Google"><i class='bx bxl-google'></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class='bx bx-home'></i> Home</a></li>
+          <li><a href="Catalogue.html"><i class='bx bx-book'></i> Catalogue</a></li>
+          <li><a href="contact.html"><i class='bx bx-phone'></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <div class="footer-contact-item">
+          <i class='bx bx-phone'></i>
+          <span>+91 94277 44623</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-envelope'></i>
+          <span>mahendramakwana446@gmail.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-map'></i>
+          <span>Amreli, Gujarat, India</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-time'></i>
+          <span>Mon - Sat: 8:30 AM - 1:30 PM, 3:00 PM - 8:30 PM</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class='bx bx-time'></i>
+          <span>Sun: 8:00 AM - 1:30 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Shyam Sanitaries. All rights reserved.</p>
+      <p class="gst">GST Number: 24AXRPM2773N1ZQ</p>
+    </div>
+  </footer>
+
+  <script src="custom-popup.js"></script>
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (navbar) {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+    });
+
+    // Mobile menu
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          mobileMenu.classList.toggle('active');
+          mobileMenuBtn.classList.toggle('active');
+          if (mobileMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+          } else {
+            document.body.style.overflow = '';
+          }
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            closeMobileMenu();
+          });
+        });
+
+        mobileMenu.addEventListener('click', (e) => {
+          if (!mobileMenuBtn.contains(e.target)) {
+            closeMobileMenu();
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (mobileMenu.classList.contains('active') && 
+              !mobileMenu.contains(e.target) && 
+              !mobileMenuBtn.contains(e.target)) {
+            closeMobileMenu();
+          }
+        });
+      }
+
+      // Active page highlighting
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-menu a, .mobile-menu a').forEach(link => {
+        if (link.getAttribute('href') === currentPage || 
+            (currentPage === '' && link.getAttribute('href') === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Contact form handler (frontend only - using mailto)
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const name = form.name.value;
+      const phone = form.phone.value;
+      const email = form.email.value;
+      const message = form.message.value;
+
+      // Create mailto link with form data
+      const subject = encodeURIComponent(`Contact Form Submission from ${name}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\n` +
+        `Phone: ${phone}\n` +
+        `Email: ${email}\n\n` +
+        `Message:\n${message}`
+      );
+      
+      const mailtoLink = `mailto:mahendramakwana446@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Show success message if custom-popup is available
+      if (typeof showSuccess !== 'undefined') {
+        setTimeout(() => {
+          showSuccess('Your message has been prepared. Please send it from your email client.', 'Message Ready');
+        }, 500);
+      }
+      
+      // Reset form
+      form.reset();
+    }
+  </script>
+</body>
+</html>
