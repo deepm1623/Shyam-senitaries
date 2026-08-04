@@ -8,6 +8,11 @@
   <title>Catalogue - Shyam Sanitaries</title>
   <link rel="website icon" type="png" href="images/ss.png" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <script>
+    if (sessionStorage.getItem('shyam-nav-transition')) {
+      document.documentElement.classList.add('nav-transition-pending');
+    }
+  </script>
   <link rel="stylesheet" href="styles.css" />
   <style>
 html {
@@ -28,10 +33,20 @@ body {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: 
-        linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(44, 62, 80, 0.7), rgba(189, 195, 199, 0.7)),
-        url('images/bg.png') no-repeat center center fixed;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(56, 189, 248, 0.12), transparent 30%),
+        radial-gradient(circle at 85% 84%, rgba(37, 99, 235, 0.10), transparent 32%),
+        radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.03), transparent 58%),
+        linear-gradient(
+          180deg,
+          #050816 0%,
+          #0a1020 26%,
+          #0f172a 58%,
+          #0b1120 100%
+        );
+      background-repeat: no-repeat;
       background-size: cover;
+      background-attachment: fixed;
       color: #fff;
       overflow-x: hidden;
       width: 100%;
@@ -182,17 +197,6 @@ body {
   .catalogue-card { 
     margin-right: 0;
     flex-shrink: 0;
-  }
-
-  .mobile-header .brand .brand-name {
-    font-size: 20px;
-    font-weight: 700;
-    margin-left: 10px;
-    letter-spacing: 0.8px;
-  }
-  
-  .mobile-header .brand .logo {
-    height: 48px;
   }
 
   .fab-container {
@@ -387,7 +391,8 @@ body {
   }
 
   .footer-brand img {
-    height: 40px;
+    height: 48px;
+    width: 48px;
   }
 
   .footer-brand span {
@@ -465,11 +470,6 @@ body {
 
 
 @media only screen and (max-width: 360px) {
-  .mobile-header .brand .brand-name {
-    font-size: 15px;
-    letter-spacing: 0.6px;
-  }
-  
   .catalogue-card h3 {
     font-size: 14px;
   }
@@ -790,8 +790,11 @@ footer::before {
 }
 
 .footer-brand img {
-  height: 45px;
-  filter: drop-shadow(0 4px 8px rgba(0, 198, 255, 0.3));
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 198, 255, 0.4))
+          drop-shadow(0 0 16px rgba(0, 198, 255, 0.2));
 }
 
 .footer-brand span {
@@ -995,65 +998,38 @@ body.offline {
   
   <nav class="navbar" id="navbar">
     <a href="index.html" class="brand">
-      <img src="images/ss.png" alt="Logo" class="logo" />
+      <img src="images/ss.png" alt="Logo" class="logo" width="72" height="72" />
       <span class="brand-name">SHYAM SANITARIES</span>
     </a>
-    <ul class="nav-menu">
-      <li><a href="index.html"><i class='bx bx-home'></i><span>Home</span></a></li>
-      <li><a href="Catalogue.html" class="active"><i class='bx bx-book'></i><span>Catalogue</span></a></li>
-      <li><a href="contact.html"><i class='bx bx-phone'></i><span>Contact</span></a></li>
-    </ul>
-    <button class="mobile-menu-btn" id="mobileMenuBtn">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-center">
+      <span class="nav-pill" id="navPill" aria-hidden="true"></span>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html"><span>Home</span></a></li>
+        <li><a href="Catalogue.html" class="active"><span>Catalogue</span></a></li>
+        <li><a href="contact.html"><span>Contact</span></a></li>
+      </ul>
+    </div>
+    <a href="tel:+919427744623" class="nav-call-btn" aria-label="Call Now">
+      <i class='bx bx-phone'></i>
+      <span>Call Now</span>
+    </a>
   </nav>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-header">
-      <img src="images/ss.png" alt="Logo" class="logo" />
-      <span class="brand-name">SHYAM SANITARIES</span>
-    </div>
-    
-    <a href="index.html"><i class='bx bx-home'></i> Home</a>
-    <a href="Catalogue.html" class="active"><i class='bx bx-book'></i> Catalogue</a>
-    <a href="contact.html"><i class='bx bx-phone'></i> Contact</a>
-    
-    <div class="mobile-menu-info">
-      <div class="mobile-menu-info-item">
-        <i class='bx bx-phone'></i>
-        <a href="tel:+919427744623">+91 9427744623</a>
-      </div>
-      <div class="mobile-menu-info-item">
-        <i class='bx bx-envelope'></i>
-        <a href="mailto:mahendramakwana446@gmail.com">mahendramakwana446@gmail.com</a>
-      </div>
-      <div class="mobile-menu-info-item">
-        <i class='bx bx-map'></i>
-        <span>9, Shyam Sundar Complex, Liliya Road, Amreli</span>
-      </div>
-      <div class="mobile-menu-info-item">
-        <i class='bx bx-time'></i>
-        <span>Mon-Sat: 8:00 AM - 8:00 PM</span>
-      </div>
-    </div>
-    
-    <div class="mobile-menu-social">
-      <a href="https://www.facebook.com/shyamsenitarisamreli.MahendraM" target="_blank" aria-label="Facebook">
-        <i class='bx bxl-facebook'></i>
-      </a>
-      <a href="https://wa.me/919427744623" target="_blank" aria-label="WhatsApp">
-        <i class='bx bxl-whatsapp'></i>
-      </a>
-      <a href="https://www.instagram.com/shyamsenitaris/" target="_blank" aria-label="Instagram">
-        <i class='bx bxl-instagram'></i>
-      </a>
-      <a href="https://www.google.com/search?client=ms-android-vivo-rvo3&sca_esv=fd368f2ad05e4b13&cs=0&hl=en-US&output=search&kgmid=%2Fg%2F11vsv4w47s&q=shyam%20sanitary" target="_blank" aria-label="Google">
-        <i class='bx bxl-google'></i>
-      </a>
-    </div>
-  </div>
+  <nav class="mobile-dock" id="mobileDock" aria-label="Mobile navigation">
+    <span class="dock-pill" id="dockPill" aria-hidden="true"></span>
+    <a href="index.html" class="dock-item">
+      <i class='bx bx-home'></i>
+      <span>Home</span>
+    </a>
+    <a href="Catalogue.html" class="dock-item active">
+      <i class='bx bx-book'></i>
+      <span>Catalogue</span>
+    </a>
+    <a href="contact.html" class="dock-item">
+      <i class='bx bx-phone'></i>
+      <span>Contact</span>
+    </a>
+  </nav>
 
   <div class="catalogue-container">
     
@@ -1148,6 +1124,7 @@ body.offline {
     
   </div>
   <script src="custom-popup.js"></script>
+  <script src="navbar.js"></script>
   <script>
   
   function checkConnection() {
@@ -1185,92 +1162,13 @@ body.offline {
 
 
 
-  
-  // Navbar scroll effect
-  window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (navbar) {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    }
-  });
-
-  // Mobile menu
-  document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('active');
-      mobileMenuBtn.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        mobileMenu.classList.toggle('active');
-        mobileMenuBtn.classList.toggle('active');
-        // Prevent body scroll when menu is open
-        if (mobileMenu.classList.contains('active')) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = '';
-        }
-      });
-
-      // Close mobile menu on link click
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          closeMobileMenu();
-        });
-      });
-
-      // Close mobile menu when clicking/touching anywhere inside the menu
-      mobileMenu.addEventListener('click', (e) => {
-        // Don't close if clicking on the menu button (handled separately)
-        if (!mobileMenuBtn.contains(e.target)) {
-          closeMobileMenu();
-        }
-      });
-
-      // Close mobile menu on escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-          closeMobileMenu();
-        }
-      });
-
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (mobileMenu.classList.contains('active') && 
-            !mobileMenu.contains(e.target) && 
-            !mobileMenuBtn.contains(e.target)) {
-          closeMobileMenu();
-        }
-      });
-    }
-
-    // Active page highlighting
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-menu a, .mobile-menu a').forEach(link => {
-      if (link.getAttribute('href') === currentPage || 
-          (currentPage === '' && link.getAttribute('href') === 'index.html')) {
-        link.classList.add('active');
-      }
-    });
-  });
-
-    </script>
+  </script>
 
   <footer>
     <div class="footer-container">
       <div class="footer-section">
         <div class="footer-brand">
-          <img src="images/ss.png" alt="Shyam Sanitaries Logo">
+          <img src="images/ss.png" alt="Shyam Sanitaries Logo" width="56" height="56">
           <span>SHYAM SANITARIES</span>
         </div>
         <p class="description">Premium quality sanitary solutions for every home & business. Trusted by thousands of customers across India.</p>
