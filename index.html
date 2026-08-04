@@ -421,22 +421,21 @@
       }
     }
 
-    /* Hero video focal point — mobile portrait */
+    /* Hero — mobile premium layout (768px and below only; desktop 1024px+ unchanged) */
     @media (max-width: 768px) {
       .hero {
         height: auto;
-        min-height: 100svh;
-        min-height: 100dvh;
+        min-height: 0;
         max-height: none;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         text-align: center;
-        padding-top: var(--hero-safe-top);
+        padding-top: calc(var(--hero-safe-top) - 8px);
         padding-left: max(16px, env(safe-area-inset-left, 0px));
         padding-right: max(16px, env(safe-area-inset-right, 0px));
-        padding-bottom: calc(56px + var(--dock-safe-padding));
+        padding-bottom: 56px;
         overflow: visible;
       }
 
@@ -449,53 +448,92 @@
         max-width: 100%;
       }
 
+      .hero-visual {
+        order: -1;
+        position: relative;
+        inset: auto;
+        width: 100%;
+        margin-top: 0;
+        min-height: 0;
+        opacity: 0;
+        transform: scale(0.96) translateZ(0);
+        animation: heroMobileVideoEnter 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        pointer-events: none;
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      .hero-visual.hero-card-animate {
+        animation: heroMobileVideoEnter 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
       .hero-content {
+        order: 0;
         align-items: center;
         text-align: center;
         max-width: 100%;
         width: 100%;
+        margin-top: 32px;
       }
 
       .hero h1 {
-        font-size: clamp(2.1rem, 9vw, 2.75rem);
-        margin-bottom: 24px;
-        max-width: none;
+        font-size: clamp(2rem, 9.5vw, 2.25rem);
+        font-weight: 800;
+        line-height: 1.05;
+        margin-bottom: 20px;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0;
+        transform: translateY(20px) translateZ(0);
+        animation: heroMobileFadeUp 600ms cubic-bezier(0.22, 1, 0.36, 1) 700ms forwards;
+        will-change: transform, opacity;
       }
 
       .hero p {
         font-size: clamp(1rem, 4vw, 1.125rem);
-        margin-bottom: 28px;
-        max-width: 640px;
-        padding: 0 4px;
+        margin-bottom: 32px;
+        max-width: 88%;
+        line-height: 1.6;
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0;
+        animation: heroMobileFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) 850ms forwards;
+        will-change: opacity;
       }
 
       .hero .cta-buttons {
         justify-content: center;
-        max-width: 420px;
+        max-width: 340px;
         width: 100%;
         margin: 0 auto;
-        gap: 14px;
+        gap: 16px;
         flex-direction: column;
       }
 
       .hero .cta-buttons .btn {
         width: 100%;
+        opacity: 0;
+        transform: translateY(16px) translateZ(0);
+        animation: heroMobileFadeUp 550ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        will-change: transform, opacity;
       }
 
-      .hero-visual {
-        position: relative;
-        inset: auto;
-        width: 100%;
-        margin-top: 36px;
-        min-height: 0;
-        transform: translateY(28px);
-        animation: heroCardSlideUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+      .hero .cta-buttons .btn:nth-child(1) {
+        animation-delay: 1000ms;
+      }
+
+      .hero .cta-buttons .btn:nth-child(2) {
+        animation-delay: 1160ms;
       }
 
       .hero-card {
         max-width: 340px;
         width: 100%;
-        height: clamp(220px, 62vw, 260px);
+        height: auto;
+        aspect-ratio: 16 / 9;
         border-radius: 24px;
         margin: 0 auto;
       }
@@ -513,17 +551,59 @@
         transform-origin: center center;
       }
 
+      .hero-animate,
+      .hero-animate-1,
+      .hero-animate-2,
+      .hero-animate-3,
+      .hero-animate-4 {
+        animation: none;
+        animation-delay: unset;
+      }
+
       .hero .scroll-indicator {
         position: relative;
         left: auto;
         bottom: auto;
         transform: none;
-        margin: 32px auto 0;
+        margin: 40px auto 0;
+        opacity: 0;
       }
 
       .hero .scroll-indicator.hero-animate {
-        animation: heroScrollIndicatorEnterMobile 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards,
-                   heroScrollBounceMobile 2.8s ease-in-out 1.95s infinite;
+        animation: heroMobileFadeIn 550ms cubic-bezier(0.22, 1, 0.36, 1) 1320ms forwards,
+                   heroScrollBounceMobile 2.8s ease-in-out 1920ms infinite;
+        will-change: opacity;
+      }
+
+      @keyframes heroMobileVideoEnter {
+        from {
+          opacity: 0;
+          transform: scale(0.96) translateZ(0);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateZ(0);
+        }
+      }
+
+      @keyframes heroMobileFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px) translateZ(0);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) translateZ(0);
+        }
+      }
+
+      @keyframes heroMobileFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       @keyframes heroScrollIndicatorEnterMobile {
