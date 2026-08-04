@@ -247,7 +247,7 @@
     if (node.tagName === 'FOOTER') return true;
     if (node.tagName === 'SCRIPT' && node.getAttribute('src')) {
       const src = node.getAttribute('src') || '';
-      return src.includes('navbar.js') || src.includes('custom-popup.js');
+      return src.includes('navbar.js') || src.includes('custom-popup.js') || src.includes('hero-video.js');
     }
     return false;
   }
@@ -385,6 +385,14 @@
 
       window.scrollTo(0, 0);
       initPageScripts(normalized, inlineScripts);
+
+      if (normalized === 'index.html' && typeof window.initializeHeroVideo === 'function') {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            window.initializeHeroVideo({ reason: 'navigation' });
+          });
+        });
+      }
 
       requestAnimationFrame(() => {
         if (repositionPill) {
