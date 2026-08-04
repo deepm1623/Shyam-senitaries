@@ -56,26 +56,6 @@
     elements.forEach((el) => observer.observe(el));
   }
 
-  function initPreloader() {
-    const preloader = document.getElementById('preloader');
-    if (!preloader) return;
-
-    if (sessionStorage.getItem('shyamLoaderShown')) {
-      preloader.style.display = 'none';
-      return;
-    }
-
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        preloader.classList.add('hide');
-        setTimeout(() => {
-          preloader.style.display = 'none';
-          sessionStorage.setItem('shyamLoaderShown', 'true');
-        }, 500);
-      }, 800);
-    });
-  }
-
   function initCatalogueLoader() {
     const loader = document.getElementById('catalogueLoading');
     if (!loader) return;
@@ -114,7 +94,6 @@
     initActivePage();
     initScrollToTop();
     initScrollReveal();
-    initPreloader();
     initCatalogueLoader();
     initOfflineCheck();
   });

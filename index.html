@@ -18,10 +18,13 @@
     if (sessionStorage.getItem('shyam-nav-transition')) {
       document.documentElement.classList.add('nav-transition-pending');
     }
+    if (sessionStorage.getItem('loaderShown') || sessionStorage.getItem('shyamLoaderShown')) {
+      document.documentElement.classList.add('loader-skip');
+    }
   </script>
   <link rel="stylesheet" href="styles.css" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9513435877533057" crossorigin="anonymous"></script>
-  <style>
+  <style id="page-styles">
     /* ─── Hero (video background) ─── */
     .hero {
       height: 100vh;
@@ -30,7 +33,7 @@
       align-items: center;
       justify-content: center;
       text-align: left;
-      padding: calc(var(--nav-height) + 80px) 24px 80px;
+      padding: var(--hero-safe-top) 24px 80px;
       position: relative;
       overflow: hidden;
       isolation: isolate;
@@ -371,7 +374,7 @@
     /* Hero video focal point — tablet */
     @media (max-width: 1024px) {
       .hero {
-        padding: calc(var(--nav-height) + 90px) 24px 80px;
+        padding: var(--hero-safe-top) 24px 80px;
       }
 
       .hero-layout {
@@ -409,22 +412,39 @@
       }
     }
 
-    /* Hero video focal point — mobile portrait (keep faucet visible) */
+    /* Hero video focal point — mobile portrait */
     @media (max-width: 768px) {
       .hero {
-        height: 90vh;
-        max-height: 90vh;
-        padding: calc(var(--nav-height) + 110px) 20px 80px;
+        height: auto;
+        min-height: 100svh;
+        min-height: 100dvh;
+        max-height: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        padding-top: var(--hero-safe-top);
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
+        padding-bottom: calc(56px + var(--dock-safe-padding));
+        overflow: visible;
       }
 
       .hero-layout {
-        gap: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        width: 100%;
+        max-width: 100%;
       }
 
       .hero-content {
         align-items: center;
         text-align: center;
         max-width: 100%;
+        width: 100%;
       }
 
       .hero h1 {
@@ -435,7 +455,7 @@
 
       .hero p {
         font-size: clamp(1rem, 4vw, 1.125rem);
-        margin-bottom: 32px;
+        margin-bottom: 28px;
         max-width: 640px;
         padding: 0 4px;
       }
@@ -443,63 +463,104 @@
       .hero .cta-buttons {
         justify-content: center;
         max-width: 420px;
-        margin-top: 0;
+        width: 100%;
+        margin: 0 auto;
+        gap: 14px;
+        flex-direction: column;
       }
 
       .hero .cta-buttons .btn {
         width: 100%;
       }
 
+      .hero-visual {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        margin-top: 36px;
+        min-height: 0;
+        transform: translateY(28px);
+        animation: heroCardSlideUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+      }
+
+      .hero-card {
+        max-width: 340px;
+        width: 100%;
+        height: clamp(220px, 62vw, 260px);
+        border-radius: 24px;
+        margin: 0 auto;
+      }
+
+      .hero-visual::before,
+      .hero-visual::after {
+        width: 260px;
+        height: 260px;
+        opacity: 0.1;
+      }
+
+      .hero-video {
+        object-position: center top;
+        transform-origin: center top;
+      }
+
       .hero .scroll-indicator {
-        bottom: 40px;
+        position: relative;
+        left: auto;
+        bottom: auto;
+        transform: none;
+        margin: 32px auto 0;
       }
 
-      .hero-video {
-        object-position: center top;
-        transform-origin: center top;
+      .hero .scroll-indicator.hero-animate {
+        animation: heroScrollIndicatorEnterMobile 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards,
+                   heroScrollBounceMobile 2.8s ease-in-out 1.95s infinite;
       }
-    }
 
-    @media (max-width: 768px) and (orientation: portrait) {
-      .hero-video {
-        object-position: center top;
-        transform-origin: center top;
+      @keyframes heroScrollIndicatorEnterMobile {
+        from {
+          opacity: 0;
+          transform: translateY(36px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-    }
 
-    /* Fine-tune portrait phones */
-    @media (max-width: 414px) and (orientation: portrait) {
-      .hero-video {
-        object-position: center top;
-        transform-origin: center top;
+      @keyframes heroScrollBounceMobile {
+        0%, 100% {
+          transform: translateY(0);
+          opacity: 0.75;
+        }
+        50% {
+          transform: translateY(12px);
+          opacity: 1;
+        }
       }
-    }
 
-    @media (max-width: 390px) and (orientation: portrait) {
-      .hero-video {
-        object-position: center top;
-        transform-origin: center top;
-      }
-    }
-
-    @media (max-width: 375px) and (orientation: portrait) {
-      .hero-video {
-        object-position: center top;
-        transform-origin: center top;
-      }
-    }
-
-    @media (max-width: 360px) and (orientation: portrait) {
-      .hero-video {
-        object-position: center top;
-        transform-origin: center top;
+      .hero .scroll-indicator i,
+      .discount-info .scroll-indicator i {
+        font-size: 22px;
       }
     }
 
-    @media (max-width: 320px) and (orientation: portrait) {
-      .hero-video {
-        object-position: center top;
-        transform-origin: center top;
+    @media (max-width: 480px) {
+      .hero {
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
+      }
+
+      .hero-card {
+        max-width: min(340px, calc(100vw - 32px));
+      }
+
+      .hero .btn {
+        min-height: 56px;
+      }
+
+      .hero .scroll-indicator i,
+      .discount-info .scroll-indicator i {
+        font-size: 20px;
       }
     }
 
@@ -992,62 +1053,6 @@
 
     
     @media (max-width: 768px) {
-      .hero {
-        height: 90vh;
-        max-height: 90vh;
-        padding: calc(var(--nav-height) + 110px) 20px 80px;
-      }
-
-      .hero .scroll-indicator {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      .hero-layout {
-        gap: 40px;
-      }
-
-      .hero .cta-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 420px;
-        gap: 14px;
-      }
-
-      .hero .btn {
-        width: 100%;
-      }
-
-      .hero-card {
-        max-width: 400px;
-        width: 100%;
-        height: min(420px, 78vw);
-        border-radius: 28px;
-      }
-
-      .hero-visual::before,
-      .hero-visual::after {
-        width: 300px;
-        height: 300px;
-        opacity: 0.1;
-      }
-
-      .hero h1 {
-        margin-bottom: 24px;
-      }
-
-      .hero p {
-        margin-bottom: 32px;
-      }
-
-      .hero .cta-buttons {
-        margin-top: 0;
-      }
-
-      .hero .scroll-indicator {
-        bottom: 40px;
-      }
-
       .features-grid,
       .stats-grid,
       .partners-grid {
@@ -1075,25 +1080,6 @@
         padding-top: 25px;
       }
 
-    }
-
-    @media (max-width: 480px) {
-      .hero {
-        padding: calc(var(--nav-height) + 100px) 16px 80px;
-      }
-
-      .hero-card {
-        max-width: 100%;
-      }
-
-      .hero .btn {
-        min-height: 56px;
-      }
-
-      .hero .scroll-indicator i,
-      .discount-info .scroll-indicator i {
-        font-size: 20px;
-      }
     }
 
     @media (max-width: 480px) {
@@ -1167,6 +1153,10 @@
     #preloader.hide {
       opacity: 0;
       pointer-events: none;
+    }
+
+    html.loader-skip #preloader {
+      display: none !important;
     }
 
     .preloader-logo {
@@ -1501,11 +1491,6 @@
 </head>
 <body>
   <div id="preloader">
-    <script>
-      if (sessionStorage.getItem('shyamLoaderShown')) {
-        document.currentScript.parentElement.style.display = 'none';
-      }
-    </script>
     <img src="images/ss.png" alt="Logo" class="preloader-logo" />
     <p class="preloader-text">Welcome to Shyam Sanitaries...</p>
   </div>
@@ -1805,6 +1790,54 @@
 
   <script src="navbar.js"></script>
   <script>
+    // Dynamic safe spacing — measured from fixed navbar and bottom dock
+    (function initLayoutSafeAreas() {
+      var root = document.documentElement;
+      var navbar = document.getElementById('navbar');
+      var dock = document.getElementById('mobileDock');
+      var mobileQuery = window.matchMedia('(max-width: 768px)');
+      var pending = 0;
+
+      function updateLayoutSafeAreas() {
+        if (navbar) {
+          var navBottom = navbar.getBoundingClientRect().bottom;
+          var gap = parseFloat(getComputedStyle(root).getPropertyValue('--nav-clearance-gap')) || 32;
+          root.style.setProperty('--hero-safe-top', (navBottom + gap) + 'px');
+        }
+
+        if (mobileQuery.matches && dock) {
+          var dockTop = dock.getBoundingClientRect().top;
+          var dockPadding = Math.max(100, window.innerHeight - dockTop + 16);
+          root.style.setProperty('--dock-safe-padding', dockPadding + 'px');
+        }
+      }
+
+      function scheduleUpdate() {
+        if (pending) return;
+        pending = requestAnimationFrame(function () {
+          pending = 0;
+          updateLayoutSafeAreas();
+        });
+      }
+
+      updateLayoutSafeAreas();
+      window.addEventListener('resize', scheduleUpdate, { passive: true });
+      window.addEventListener('scroll', scheduleUpdate, { passive: true });
+      window.addEventListener('orientationchange', scheduleUpdate, { passive: true });
+
+      if (typeof mobileQuery.addEventListener === 'function') {
+        mobileQuery.addEventListener('change', scheduleUpdate);
+      } else if (typeof mobileQuery.addListener === 'function') {
+        mobileQuery.addListener(scheduleUpdate);
+      }
+
+      if ('ResizeObserver' in window) {
+        var observer = new ResizeObserver(scheduleUpdate);
+        if (navbar) observer.observe(navbar);
+        if (dock) observer.observe(dock);
+      }
+    })();
+
     // Hero video — lazy attach source, then autoplay
     (function initHeroVideo() {
       const video = document.querySelector('.hero-video');
@@ -1830,19 +1863,55 @@
       }
     })();
 
-    // Preloader — show full animation only once per browser tab session
-    window.addEventListener("load", () => {
-      const preloader = document.getElementById("preloader");
-      if (!preloader || sessionStorage.getItem("shyamLoaderShown")) return;
+    // Preloader — once per tab, first full-page open only (not SPA / nav / back-forward)
+    (function () {
+      var STORAGE_KEY = "loaderShown";
+      var preloader = document.getElementById("preloader");
+      if (!preloader) return;
 
-      setTimeout(() => {
+      if (sessionStorage.getItem("shyamLoaderShown") && !sessionStorage.getItem(STORAGE_KEY)) {
+        sessionStorage.setItem(STORAGE_KEY, "true");
+      }
+
+      function hideImmediately() {
+        preloader.classList.remove("hide");
+        preloader.style.display = "none";
+        document.documentElement.classList.add("loader-skip");
+      }
+
+      function hideWithAnimation() {
         preloader.classList.add("hide");
-        setTimeout(() => {
+        setTimeout(function () {
           preloader.style.display = "none";
-          sessionStorage.setItem("shyamLoaderShown", "true");
+          sessionStorage.setItem(STORAGE_KEY, "true");
+          document.documentElement.classList.add("loader-skip");
         }, 500);
-      }, 1000);
-    });
+      }
+
+      if (sessionStorage.getItem(STORAGE_KEY)) {
+        hideImmediately();
+        return;
+      }
+
+      if (document.readyState === "complete") {
+        sessionStorage.setItem(STORAGE_KEY, "true");
+        hideImmediately();
+        return;
+      }
+
+      var finished = false;
+      function finish() {
+        if (finished) return;
+        finished = true;
+        hideWithAnimation();
+      }
+
+      setTimeout(finish, 2000);
+
+      window.addEventListener("load", function () {
+        setTimeout(finish, 1000);
+      }, { once: true });
+    })();
 
     // Wavin to Supreme Animation
     const wavinCard = document.querySelector('.wavin-supreme-card');

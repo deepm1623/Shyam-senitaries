@@ -20,6 +20,9 @@
   --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.4);
   --shadow-glow: 0 0 20px rgba(0, 198, 255, 0.3);
   --nav-height: 104px;
+  --nav-clearance-gap: 32px;
+  --hero-safe-top: calc(env(safe-area-inset-top, 0px) + var(--nav-height) + var(--nav-clearance-gap));
+  --dock-safe-padding: calc(100px + env(safe-area-inset-bottom, 0px));
   --nav-glass-bg: rgba(20, 25, 35, 0.55);
   --nav-glass-bg-top: rgba(20, 25, 35, 0.18);
   --nav-blue-glow: rgba(29, 161, 255, 0.35);
@@ -217,6 +220,7 @@ body.nav-is-leaving {
   padding: 4px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
+  isolation: isolate;
 }
 
 .nav-menu {
@@ -248,10 +252,8 @@ body.nav-is-leaving {
   opacity: 0;
   transition:
     transform 500ms cubic-bezier(.22,1,.36,1),
-    width 500ms cubic-bezier(.22,1,.36,1),
-    height 500ms cubic-bezier(.22,1,.36,1),
     opacity 180ms ease;
-  will-change: transform, width, height;
+  will-change: transform;
 }
 
 .nav-menu li a {
@@ -364,7 +366,7 @@ body.nav-is-leaving {
 .mobile-dock {
   display: none;
   position: fixed;
-  bottom: 20px;
+  bottom: max(20px, calc(env(safe-area-inset-bottom, 0px) + 12px));
   left: 50%;
   transform: translateX(-50%) translateY(0);
   z-index: 1001;
@@ -372,6 +374,7 @@ body.nav-is-leaving {
   max-width: 380px;
   padding: 8px 10px;
   border-radius: 999px;
+  isolation: isolate;
   background: rgba(20, 25, 35, 0.72);
   backdrop-filter: blur(35px) saturate(180%);
   -webkit-backdrop-filter: blur(35px) saturate(180%);
@@ -410,10 +413,8 @@ body.nav-is-leaving {
   opacity: 0;
   transition:
     transform 500ms cubic-bezier(.22,1,.36,1),
-    width 500ms cubic-bezier(.22,1,.36,1),
-    height 500ms cubic-bezier(.22,1,.36,1),
     opacity 180ms ease;
-  will-change: transform, width, height;
+  will-change: transform;
 }
 
 .mobile-dock .dock-item {
@@ -422,8 +423,8 @@ body.nav-is-leaving {
   align-items: center;
   justify-content: center;
   gap: 3px;
-  flex: 1;
-  padding: 8px 6px;
+  flex: 1 1 0;
+  padding: 8px 4px;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.65);
   border-radius: 999px;
@@ -542,7 +543,6 @@ body.nav-is-leaving {
   .nav-pill,
   .dock-pill {
     transition: none !important;
-    transform: none !important;
   }
 }
 
@@ -784,15 +784,20 @@ body.nav-is-leaving {
 
 @media (max-width: 768px) {
   :root {
-    --nav-height: 72px;
+    --nav-top-offset: max(10px, env(safe-area-inset-top, 0px));
+    --nav-bar-size: 74px;
+    --nav-height: calc(var(--nav-top-offset) + var(--nav-bar-size));
+    --nav-clearance-gap: 32px;
+    --hero-safe-top: calc(var(--nav-top-offset) + var(--nav-bar-size) + var(--nav-clearance-gap));
+    --dock-safe-padding: calc(100px + env(safe-area-inset-bottom, 0px));
   }
 
   .navbar {
     width: calc(100% - 40px);
-    height: 72px;
-    min-height: 72px;
-    padding: 0 20px;
-    top: 12px;
+    height: var(--nav-bar-size);
+    min-height: var(--nav-bar-size);
+    padding: 0 18px;
+    top: var(--nav-top-offset);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -800,32 +805,32 @@ body.nav-is-leaving {
   }
 
   .navbar.scrolled {
-    height: 72px;
-    min-height: 72px;
-    padding: 0 20px;
-    top: 8px;
+    height: var(--nav-bar-size);
+    min-height: var(--nav-bar-size);
+    padding: 0 18px;
+    top: max(8px, env(safe-area-inset-top, 0px));
   }
 
   .brand {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 14px;
     flex-shrink: 0;
     min-width: 0;
   }
 
   .brand-name {
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 800;
     line-height: 1;
     letter-spacing: 0.3px;
-    transform: translateY(1px);
+    transform: none;
   }
 
   .brand .logo {
-    height: 56px;
-    width: 56px;
+    height: 50px;
+    width: 50px;
     flex-shrink: 0;
     display: block;
   }
@@ -841,7 +846,7 @@ body.nav-is-leaving {
   }
 
   body {
-    padding-bottom: 96px;
+    padding-bottom: var(--dock-safe-padding);
   }
 
   .btn {
@@ -849,35 +854,34 @@ body.nav-is-leaving {
     padding: 14px 28px;
   }
 
-  .scroll-indicator {
-     position: absolute;
-     left: 50%;
-     bottom: 180px;
-     transform: translateX(-50%);
-     margin: 0;
-     display: flex !important;
-     justify-content: center;
-     align-items: center;
-     z-index: 10;
-  }
-
-  .hero .cta-buttons {
-    margin-bottom: 1cm;
+  .discount-info .scroll-indicator {
+    position: static;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    margin: 48px auto 0;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 @media (max-width: 480px) {
   .navbar {
     width: calc(100% - 32px);
-    height: 72px;
-    min-height: 72px;
-    padding: 0 20px;
+    padding: 0 16px;
   }
 
   .mobile-dock {
     width: calc(100% - 24px);
-    bottom: 16px;
+    bottom: max(16px, calc(env(safe-area-inset-bottom, 0px) + 10px));
     padding: 6px 8px;
+    gap: 2px;
+  }
+
+  .mobile-dock .dock-item {
+    padding: 8px 2px;
+    gap: 2px;
   }
 
   .mobile-dock .dock-item i {
@@ -886,6 +890,116 @@ body.nav-is-leaving {
 
   .mobile-dock .dock-item span {
     font-size: 9px;
+  }
+}
+
+@media (max-width: 430px) {
+  .mobile-dock {
+    width: calc(100% - 20px);
+    padding: 6px 6px;
+  }
+
+  .mobile-dock .dock-item i {
+    font-size: 19px;
+  }
+
+  .mobile-dock .dock-item span {
+    font-size: 8.5px;
+  }
+}
+
+@media (max-width: 414px) {
+  .navbar {
+    width: calc(100% - 28px);
+    padding: 0 16px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .mobile-dock {
+    width: calc(100% - 18px);
+  }
+}
+
+@media (max-width: 390px) {
+  .brand .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .mobile-dock .dock-item i {
+    font-size: 18px;
+  }
+
+  .mobile-dock .dock-item span {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 375px) {
+  .navbar {
+    width: calc(100% - 24px);
+    padding: 0 14px;
+  }
+
+  .brand {
+    gap: 12px;
+  }
+
+  .mobile-dock {
+    width: calc(100% - 16px);
+    padding: 5px 5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .mobile-dock .dock-item {
+    padding: 7px 1px;
+  }
+}
+
+@media (max-width: 320px) {
+  .navbar {
+    width: calc(100% - 20px);
+    padding: 0 12px;
+  }
+
+  .brand .logo {
+    height: 48px;
+    width: 48px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+    letter-spacing: 0.2px;
+  }
+
+  .mobile-dock {
+    width: calc(100% - 14px);
+    padding: 5px 4px;
+    gap: 1px;
+  }
+
+  .mobile-dock .dock-item i {
+    font-size: 17px;
+  }
+
+  .mobile-dock .dock-item span {
+    font-size: 7.5px;
+  }
+
+  body {
+    padding-bottom: var(--dock-safe-padding);
   }
 }
 

@@ -1,32 +1,27 @@
 (function () {
   'use strict';
 
-  const TRANSITION_KEY = 'shyam-nav-transition';
-  const PREFETCH_KEY = 'shyam-nav-prefetched';
+  const NAV_PAGES = ['index.html', 'Catalogue.html', 'contact.html'];
   const MOTION = {
     spring: 'cubic-bezier(.22,1,.36,1)',
     pillDuration: 500,
-    leaveDuration: 220,
-    enterDuration: 350,
+    contentLeave: 220,
+    contentEnter: 350,
   };
 
   const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const hoverQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
 
   const state = {
-    pillControllers: [],
     currentPage: getCurrentPage(),
-    leaving: false,
+    pillEngines: [],
+    navigating: false,
     scrollRaf: 0,
     dockScrollRaf: 0,
+    resizeRaf: 0,
   };
 
   function prefersReducedMotion() {
     return reduceMotionQuery.matches;
-  }
-
-  function canHover() {
-    return hoverQuery.matches;
   }
 
   function getCurrentPage() {
@@ -38,17 +33,21 @@
     return (href || '').split('?')[0].split('#')[0];
   }
 
-  function isCurrentLink(link, currentPage) {
-    const href = normalizeHref(link.getAttribute('href'));
-    if (!href || href.charAt(0) === '#') return false;
-    if (href === currentPage) return true;
-    if (!currentPage && href === 'index.html') return true;
-    return href === './' + currentPage;
+  function isNavPage(href) {
+    return NAV_PAGES.includes(normalizeHref(href));
   }
 
-  function getLinkByHref(menu, href) {
+  function isCurrentLink(link, page) {
+    const href = normalizeHref(link.getAttribute('href'));
+    if (!href || href.charAt(0) === '#') return false;
+    return href === page || href === './' + page;
+  }
+
+  function getLinkByHref(container, href) {
     const normalized = normalizeHref(href);
-    return Array.from(menu.querySelectorAll('a')).find((link) => normalizeHref(link.getAttribute('href')) === normalized) || null;
+    return Array.from(container.querySelectorAll('a')).find(
+      (link) => normalizeHref(link.getAttribute('href')) === normalized
+    ) || null;
   }
 
   function setActiveByHref(href) {
@@ -70,23 +69,10 @@
     document.body.classList.toggle('nav-is-leaving', isLeaving);
   }
 
-  function consumeTransitionState() {
-    try {
-      const raw = sessionStorage.getItem(TRANSITION_KEY);
-      if (!raw) return null;
-      sessionStorage.removeItem(TRANSITION_KEY);
-      return JSON.parse(raw);
-    } catch {
-      sessionStorage.removeItem(TRANSITION_KEY);
-      return null;
-    }
-  }
-
   function primePrefetch() {
-    if (sessionStorage.getItem(PREFETCH_KEY)) return;
+    if (sessionStorage.getItem('shyam-nav-prefetched')) return;
 
-    const pages = ['index.html', 'Catalogue.html', 'contact.html'];
-    pages.forEach((page) => {
+    NAV_PAGES.forEach((page) => {
       if (page === state.currentPage) return;
       const link = document.createElement('link');
       link.rel = 'prefetch';
@@ -95,7 +81,119 @@
       document.head.appendChild(link);
     });
 
-    sessionStorage.setItem(PREFETCH_KEY, 'true');
+    sessionStorage.setItem('shyam-nav-prefetched', 'true');
+  }
+
+  function createPillEngine(container, pill) {
+    if (!container || !pill) return null;
+
+    const engine = {
+      container,
+      pill,
+      pendingRaf: 0,
+      lastKey: '',
+    };
+
+    engine.moveTo = function moveTo(link, animate) {
+      cancelAnimationFrame(engine.pendingRaf);
+
+      engine.pendingRaf = requestAnimationFrame(() => {
+        engine.pendingRaf = 0;
+
+        if (!link || container.getClientRects().length === 0) {
+          pill.style.opacity = '0';
+          engine.lastKey = '';
+          return;
+        }
+
+        const containerRect = container.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
+        const x = linkRect.left - containerRect.left;
+        const y = linkRect.top - containerRect.top;
+        const width = linkRect.width;
+        const height = linkRect.height;
+        const key = [Math.round(x), Math.round(y), Math.round(width), Math.round(height)].join('|');
+
+        if (key === engine.lastKey) {
+          pill.style.opacity = '1';
+          return;
+        }
+
+        const shouldAnimate = animate && !prefersReducedMotion();
+
+        pill.style.width = `${width}px`;
+        pill.style.height = `${height}px`;
+
+        if (shouldAnimate) {
+          pill.style.transition = [
+            `transform ${MOTION.pillDuration}ms ${MOTION.spring}`,
+            'opacity 180ms ease',
+          ].join(', ');
+        } else {
+          pill.style.transition = 'none';
+        }
+
+        pill.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        pill.style.opacity = '1';
+        engine.lastKey = key;
+
+        if (!shouldAnimate) {
+          void pill.offsetWidth;
+          pill.style.transition = [
+            `transform ${MOTION.pillDuration}ms ${MOTION.spring}`,
+            'opacity 180ms ease',
+          ].join(', ');
+        }
+      });
+    };
+
+    engine.moveToActive = function moveToActive(animate) {
+      engine.moveTo(container.querySelector('a.active'), animate);
+    };
+
+    return engine;
+  }
+
+  function syncPills(animate) {
+    state.pillEngines.forEach((engine) => engine.moveToActive(animate));
+  }
+
+  function initPillEngines() {
+    state.pillEngines = [];
+
+    const desktopContainer = document.querySelector('.nav-center');
+    const desktopPill = document.getElementById('navPill');
+    const mobileContainer = document.getElementById('mobileDock');
+    const mobilePill = document.getElementById('dockPill');
+
+    const desktopEngine = createPillEngine(desktopContainer, desktopPill);
+    const mobileEngine = createPillEngine(mobileContainer, mobilePill);
+
+    if (desktopEngine) state.pillEngines.push(desktopEngine);
+    if (mobileEngine) state.pillEngines.push(mobileEngine);
+  }
+
+  function initPillLayoutObservers() {
+    const reposition = () => syncPills(false);
+
+    const onResize = () => {
+      if (state.resizeRaf) return;
+      state.resizeRaf = requestAnimationFrame(() => {
+        state.resizeRaf = 0;
+        reposition();
+      });
+    };
+
+    window.addEventListener('resize', onResize, { passive: true });
+
+    if ('ResizeObserver' in window) {
+      state.pillEngines.forEach((engine) => {
+        const observer = new ResizeObserver(onResize);
+        observer.observe(engine.container);
+      });
+    }
+
+    window.addEventListener('orientationchange', onResize, { passive: true });
   }
 
   function initNavbarScroll() {
@@ -103,8 +201,8 @@
     if (!navbar) return;
 
     const update = () => {
-      const shouldShrink = window.scrollY > 30;
-      navbar.classList.toggle('scrolled', shouldShrink);
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+      syncPills(false);
     };
 
     const onScroll = () => {
@@ -117,102 +215,6 @@
 
     window.addEventListener('scroll', onScroll, { passive: true });
     update();
-  }
-
-  function createLiquidPill(menuSelector, pillSelector, transitionState) {
-    const menu = document.querySelector(menuSelector);
-    const pill = document.querySelector(pillSelector);
-    if (!menu || !pill) return null;
-
-    const controller = {
-      menu,
-      pill,
-      scheduled: false,
-      lastSignature: '',
-    };
-
-    function placeOnLink(link, animate = true) {
-      if (!link || menu.getClientRects().length === 0) {
-        pill.style.opacity = '0';
-        return;
-      }
-
-      const menuRect = menu.getBoundingClientRect();
-      const linkRect = link.getBoundingClientRect();
-      const x = linkRect.left - menuRect.left;
-      const y = linkRect.top - menuRect.top;
-      const signature = [Math.round(x), Math.round(y), Math.round(linkRect.width), Math.round(linkRect.height)].join('|');
-
-      if (signature === controller.lastSignature && animate) {
-        pill.style.opacity = '1';
-        return;
-      }
-
-      controller.lastSignature = signature;
-
-      if (prefersReducedMotion()) {
-        pill.style.transition = 'none';
-      } else if (animate) {
-        pill.style.transition = [
-          `transform ${MOTION.pillDuration}ms ${MOTION.spring}`,
-          `width ${MOTION.pillDuration}ms ${MOTION.spring}`,
-          `height ${MOTION.pillDuration}ms ${MOTION.spring}`,
-          'opacity 180ms ease',
-        ].join(', ');
-      }
-
-      pill.style.width = `${linkRect.width}px`;
-      pill.style.height = `${linkRect.height}px`;
-      pill.style.opacity = '1';
-      pill.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    }
-
-    function schedule(targetLink, animate = true) {
-      if (controller.scheduled) return;
-      controller.scheduled = true;
-
-      requestAnimationFrame(() => {
-        controller.scheduled = false;
-        placeOnLink(targetLink, animate);
-      });
-    }
-
-    controller.placeOnLink = placeOnLink;
-    controller.schedule = schedule;
-
-    const activeLink = menu.querySelector('a.active');
-    if (transitionState && transitionState.from) {
-      const sourceLink = getLinkByHref(menu, transitionState.from) || activeLink;
-      placeOnLink(sourceLink, false);
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => schedule(activeLink, true));
-      });
-    } else {
-      placeOnLink(activeLink, false);
-      requestAnimationFrame(() => schedule(activeLink, true));
-    }
-
-    if ('ResizeObserver' in window) {
-      const observer = new ResizeObserver(() => schedule(menu.querySelector('a.active'), true));
-      observer.observe(menu);
-    } else {
-      window.addEventListener('resize', () => schedule(menu.querySelector('a.active'), true), { passive: true });
-    }
-
-    window.addEventListener('load', () => schedule(menu.querySelector('a.active'), true));
-
-    state.pillControllers.push(controller);
-    return controller;
-  }
-
-  function syncPills(href, animate = true) {
-    const target = normalizeHref(href || state.currentPage);
-    state.pillControllers.forEach((controller) => {
-      const link = getLinkByHref(controller.menu, target) || controller.menu.querySelector('a.active');
-      if (link) {
-        controller.schedule(link, animate);
-      }
-    });
   }
 
   function initMobileDockScroll() {
@@ -239,6 +241,170 @@
     }, { passive: true });
   }
 
+  function shouldPersistBodyNode(node) {
+    if (!node || node.nodeType !== Node.ELEMENT_NODE) return false;
+    if (node.id === 'navbar' || node.id === 'mobileDock') return true;
+    if (node.tagName === 'FOOTER') return true;
+    if (node.tagName === 'SCRIPT' && node.getAttribute('src')) {
+      const src = node.getAttribute('src') || '';
+      return src.includes('navbar.js') || src.includes('custom-popup.js');
+    }
+    return false;
+  }
+
+  function swapHeadMeta(doc) {
+    document.title = doc.title;
+
+    const currentStyle = document.getElementById('page-styles');
+    const nextStyle = doc.getElementById('page-styles');
+
+    if (currentStyle && nextStyle) {
+      currentStyle.textContent = nextStyle.textContent;
+    }
+  }
+
+  function runInlineScripts(codeBlocks) {
+    codeBlocks.forEach((code) => {
+      if (!code || !code.trim()) return;
+      const script = document.createElement('script');
+      script.textContent = code;
+      document.body.appendChild(script);
+      script.remove();
+    });
+  }
+
+  function initCatalogueOffline() {
+    const offlineMessage = document.getElementById('offlineMessage');
+    if (!offlineMessage) return;
+
+    const checkConnection = () => {
+      const offline = !navigator.onLine;
+      offlineMessage.classList.toggle('show', offline);
+      document.body.classList.toggle('offline', offline);
+    };
+
+    checkConnection();
+
+    if (initCatalogueOffline.initialized) return;
+    initCatalogueOffline.initialized = true;
+
+    window.addEventListener('online', () => {
+      checkConnection();
+      if (typeof showSuccess !== 'undefined') {
+        showSuccess('Internet connection restored!', 'Back Online');
+      }
+    });
+    window.addEventListener('offline', checkConnection);
+  }
+
+  initCatalogueOffline.initialized = false;
+
+  function initPageScripts(page, inlineScripts) {
+    if (page === 'Catalogue.html') {
+      initCatalogueOffline();
+      return;
+    }
+
+    runInlineScripts(inlineScripts);
+  }
+
+  function swapBodyContent(doc) {
+    const footer = document.querySelector('footer');
+    if (!footer) return [];
+
+    Array.from(document.body.children).forEach((node) => {
+      if (shouldPersistBodyNode(node)) return;
+      node.remove();
+    });
+
+    const inlineScripts = [];
+
+    Array.from(doc.body.children).forEach((node) => {
+      if (shouldPersistBodyNode(node)) return;
+
+      if (node.tagName === 'SCRIPT') {
+        if (!node.getAttribute('src')) {
+          inlineScripts.push(node.textContent || '');
+        }
+        return;
+      }
+
+      footer.before(document.importNode(node, true));
+    });
+
+    return inlineScripts;
+  }
+
+  async function fetchPageDocument(href) {
+    const response = await fetch(href, {
+      credentials: 'same-origin',
+      headers: { 'X-Requested-With': 'shyam-spa' },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${href}`);
+    }
+
+    const html = await response.text();
+    return new DOMParser().parseFromString(html, 'text/html');
+  }
+
+  async function loadPage(href, options = {}) {
+    const {
+      push = false,
+      animatePill = false,
+      animateContent = true,
+      repositionPill = true,
+    } = options;
+    const normalized = normalizeHref(href);
+
+    if (!isNavPage(normalized)) {
+      window.location.href = normalized;
+      return;
+    }
+
+    if (state.navigating) return;
+    state.navigating = true;
+
+    try {
+      if (animateContent && !prefersReducedMotion()) {
+        setContentLeaving(true);
+        await new Promise((resolve) => window.setTimeout(resolve, MOTION.contentLeave));
+      }
+
+      const doc = await fetchPageDocument(normalized);
+      swapHeadMeta(doc);
+      const inlineScripts = swapBodyContent(doc);
+
+      setActiveByHref(normalized);
+      state.currentPage = normalized;
+
+      if (push) {
+        history.pushState({ page: normalized }, '', normalized);
+      }
+
+      window.scrollTo(0, 0);
+      initPageScripts(normalized, inlineScripts);
+
+      requestAnimationFrame(() => {
+        if (repositionPill) {
+          syncPills(animatePill);
+        }
+        if (animateContent && !prefersReducedMotion()) {
+          requestAnimationFrame(() => {
+            setContentLeaving(false);
+          });
+        } else {
+          setContentLeaving(false);
+        }
+      });
+    } catch {
+      window.location.href = normalized;
+    } finally {
+      state.navigating = false;
+    }
+  }
+
   function bindNavTransitions() {
     const links = document.querySelectorAll('.nav-menu a, .mobile-dock .dock-item');
 
@@ -246,33 +412,25 @@
       link.addEventListener('click', (event) => {
         const targetHref = normalizeHref(link.getAttribute('href'));
 
-        if (!targetHref || targetHref.charAt(0) === '#') {
+        if (!targetHref || targetHref.charAt(0) === '#' || !isNavPage(targetHref)) {
           return;
         }
 
         if (targetHref === state.currentPage) {
+          event.preventDefault();
           return;
         }
 
         event.preventDefault();
-
-        const sourceLink = document.querySelector('.nav-menu a.active, .mobile-dock .dock-item.active');
-        const fromHref = sourceLink ? normalizeHref(sourceLink.getAttribute('href')) : state.currentPage;
-
-        setActiveByHref(targetHref);
-        syncPills(targetHref, true);
 
         if (prefersReducedMotion()) {
           window.location.href = targetHref;
           return;
         }
 
-        sessionStorage.setItem(TRANSITION_KEY, JSON.stringify({ from: fromHref, to: targetHref }));
-        setContentLeaving(true);
-
-        window.setTimeout(() => {
-          window.location.href = targetHref;
-        }, MOTION.leaveDuration);
+        setActiveByHref(targetHref);
+        syncPills(true);
+        loadPage(targetHref, { push: true, repositionPill: false, animateContent: true });
       });
     });
   }
@@ -296,44 +454,47 @@
     });
   }
 
-  function initPageEntry(transitionState) {
-    const html = document.documentElement;
-
-    if (!transitionState) {
-      return;
-    }
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        html.classList.remove('nav-transition-pending');
-      });
-    });
+  function handlePopState() {
+    const page = getCurrentPage();
+    if (page === state.currentPage) return;
+    loadPage(page, { push: false, animatePill: true, animateContent: false, repositionPill: true });
   }
 
   function handleReducedMotionChange() {
     if (prefersReducedMotion()) {
       document.body.classList.remove('nav-is-leaving');
+      syncPills(false);
     }
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const transitionState = consumeTransitionState();
-
+  function boot() {
     setActiveByHref(state.currentPage);
     primePrefetch();
+    initPillEngines();
+    initPillLayoutObservers();
     initNavbarScroll();
     initMobileDockScroll();
     bindNavTransitions();
     bindPressFeedback();
-    initPageEntry(transitionState);
-    createLiquidPill('.nav-center', '#navPill', transitionState);
-    createLiquidPill('.mobile-dock', '#dockPill', transitionState);
-    syncPills(state.currentPage, true);
+
+    history.replaceState({ page: state.currentPage }, '', state.currentPage);
+
+    requestAnimationFrame(() => {
+      syncPills(false);
+    });
+
+    window.addEventListener('popstate', handlePopState);
 
     if (typeof reduceMotionQuery.addEventListener === 'function') {
       reduceMotionQuery.addEventListener('change', handleReducedMotionChange);
     } else if (typeof reduceMotionQuery.addListener === 'function') {
       reduceMotionQuery.addListener(handleReducedMotionChange);
     }
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 })();
